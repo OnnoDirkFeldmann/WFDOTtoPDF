@@ -12,38 +12,49 @@ namespace WFDOTtoPDF
             connection.ConnectionString = @"Data Source=C:\Users\Neronno\source\repos\WFDOTtoPDF\WFDOTtoPDF\WFDOT.db";
             connection.Open();
 
-            string sqlCom = "SELECT * FROM WB WHERE Wortart != 'Phrase'";
+            string sqlCom = "SELECT * FROM WB WHERE Wortart != 'Phrase' AND Ostfriesisch Like 'a%'";
             SQLiteCommand scdCommand = new SQLiteCommand(sqlCom, connection);
             SQLiteDataReader reader = scdCommand.ExecuteReader();
 
             //Ostfriesische Begriffe holen
             string ostfriesisch;
+            string index;
             string deutsch; 
             string temp;
             string writestring;
             writestring = "";
             List<string> list = new List<string>();
-            List<string> ofrs = new List<string>();
+            List<string> ostfriesischewoerter = new List<string>();
+            List<string> indexewoerter = new List<string>();
             List<string> list2 = new List<string>();
             while (reader.Read())
             {
                 ostfriesisch = (string)reader["Ostfriesisch"];
-                ofrs.Add(ostfriesisch);
+                ostfriesischewoerter.Add(ostfriesisch);
                 ostfriesisch = "<b>" + ostfriesisch + "</b>";
                 deutsch = (string)reader["Deutsch"];
                 temp = ostfriesisch + " " + deutsch + "<br/>";
+                index = (string)reader["Index"];
+                indexewoerter.Add(index);
                 list.Add(temp);
             }
             reader.Close();
             // Phrasen anreichern
-            for (int i = 0; i < ofrs.Count; i++)
+            for (int i = 0; i < ostfriesischewoerter.Count; i++)
             {
                 string final;
                 final = list[i];
                 SQLiteParameter ofrsprep = new SQLiteParameter("@ofrs");
                 string sqlCom2 = "SELECT * FROM WB WHERE Wortart = 'Phrase' AND Zuordnung = @ofrs";
                 SQLiteCommand scdCommand2 = new SQLiteCommand(sqlCom2, connection);
-                ofrsprep.Value = ofrs[i];
+                if (indexewoerter[i] == "-")
+                {
+                    ofrsprep.Value = ostfriesischewoerter[i];
+                }
+                else
+                {
+                    ofrsprep.Value = ostfriesischewoerter[i] + "#" + indexewoerter[i];
+                }
                 scdCommand2.Parameters.Add(ofrsprep);
                 scdCommand2.Prepare();
                 SQLiteDataReader reader2 = scdCommand2.ExecuteReader();
