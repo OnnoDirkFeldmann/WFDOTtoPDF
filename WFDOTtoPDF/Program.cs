@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.SQLite;
 using System.IO;
 
@@ -8,18 +9,39 @@ namespace WFDOTtoPDF
     {
         static void Main(string[] args)
         {
+            string line;
+            line = Console.ReadLine();
+            switch (line)
+            {
+                case "1":
+                    string html;
+                    html = Tohtml();
+                    File.WriteAllText(@"C:\Users\Neronno\Desktop\test.html", html);
+                    break;
+                case "2":
+
+                    break;
+            }
+
+        }
+        public static void Topdf(string html)
+        {
+            
+        }
+            public static string Tohtml()
+        {
             SQLiteConnection connection = new SQLiteConnection();
             connection.ConnectionString = @"Data Source=C:\Users\Neronno\source\repos\WFDOTtoPDF\WFDOTtoPDF\WFDOT.db";
             connection.Open();
 
-            string sqlCom = "SELECT * FROM WB WHERE Wortart != 'Phrase' AND Ostfriesisch Like 'a%'";
+            string sqlCom = "SELECT * FROM WB WHERE Wortart != 'Phrase'";
             SQLiteCommand scdCommand = new SQLiteCommand(sqlCom, connection);
             SQLiteDataReader reader = scdCommand.ExecuteReader();
 
             //Ostfriesische Begriffe holen
             string ostfriesisch;
             string index;
-            string deutsch; 
+            string deutsch;
             string temp;
             string writestring;
             writestring = "";
@@ -69,9 +91,9 @@ namespace WFDOTtoPDF
                 writestring = writestring + final;
                 reader2.Close();
             }
-            
+
             connection.Close();
-            File.WriteAllText(@"C:\Users\Neronno\Desktop\test.html", writestring);
+            return writestring;
         }
     }
 }
