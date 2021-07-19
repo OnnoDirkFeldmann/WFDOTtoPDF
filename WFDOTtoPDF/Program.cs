@@ -40,6 +40,8 @@ namespace WFDOTtoPDF
 
             //Ostfriesische Begriffe holen
             string ostfriesisch;
+            string standardform;
+            string konjugation;
             string index;
             string deutsch;
             string temp;
@@ -55,7 +57,17 @@ namespace WFDOTtoPDF
                 ostfriesischewoerter.Add(ostfriesisch);
                 ostfriesisch = "<b>" + ostfriesisch + "</b>";
                 deutsch = (string)reader["Deutsch"];
+                standardform = (string)reader["Standardform"];
+                konjugation = (string)reader["Konjugation"];
                 temp = ostfriesisch + " " + deutsch + "<br/>";
+                if (standardform != "-")
+                {
+                    temp += standardform + "<br/>";
+                }
+                if (konjugation != "-")
+                {
+                    temp += konjugation;
+                }
                 index = (string)reader["Index"];
                 indexewoerter.Add(index);
                 list.Add(temp);
