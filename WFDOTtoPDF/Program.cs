@@ -44,8 +44,15 @@ namespace WFDOTtoPDF
             string konjugation;
             string index;
             string deutsch;
+            string artikel;
+            string plural;
             string temp;
+            string wortart;
+            string genus;
+            string komparation;
+            string nebenformen;
             string writestring;
+            string kommentar;
             writestring = "";
             List<string> list = new List<string>();
             List<string> ostfriesischewoerter = new List<string>();
@@ -55,19 +62,74 @@ namespace WFDOTtoPDF
             {
                 ostfriesisch = (string)reader["Ostfriesisch"];
                 ostfriesischewoerter.Add(ostfriesisch);
-                ostfriesisch = "<b>" + ostfriesisch + "</b>";
+                ostfriesisch = "<span style=\"font-family:Verdana; font-size:12pt\"><b>" + ostfriesisch + "</b></span>";
                 deutsch = (string)reader["Deutsch"];
                 standardform = (string)reader["Standardform"];
+                artikel = (string)reader["Artikel"];
+                plural = (string)reader["Plural"];
+                wortart = (string)reader["Wortart"];
+                genus = (string)reader["Genus"];
+                komparation = (string)reader["Komparation"];
+                nebenformen = (string)reader["Nebenformen"];
                 konjugation = (string)reader["Konjugation"];
-                temp = ostfriesisch + " " + deutsch + "<br/>";
+                kommentar = (string)reader["Kommentar"];
+                temp = ostfriesisch;
+                if (artikel != "-" || plural != "-")
+                {
+                    temp += "<span style=\"font-family:Verdana; font-size:12pt\"> [</span>";
+                }
+                if (artikel != "-")
+                {
+                    temp += "<span style=\"font-family:Verdana; font-size:12pt\">" + artikel + "</span>";
+                }
+                if (genus != "-")
+                {
+                    string genusstring = "Genusfehler";
+                    switch (genus)
+                    {
+                        case "masculinum":
+                            genusstring = "m.";
+                            break;
+                        case "femininum":
+                            genusstring = "f.";
+                            break;
+                        case "neutrum":
+                            genusstring = "n.";
+                            break;
+                    }
+                    temp += "<span style=\"font-family:Verdana; font-size:12pt\">, " + genusstring + "</span>";
+                }
+                if (plural != "-")
+                {
+                    temp += "<span style=\"font-family:Verdana; font-size:12pt\">, " + plural + "</span>";
+                }
+                if (artikel != "-" || plural != "-")
+                {
+                    temp += "<span style=\"font-family:Verdana; font-size:12pt\">]</span>";
+                }
+                temp += "<i><span style=\"font-family:Verdana; font-size:12pt\"> " + deutsch + "<br/></span></i>";
+                if (nebenformen != "-")
+                {
+                    temp += "<span style=\"font-family:Verdana; font-size:11pt\">[NF: " + nebenformen + "]<br/></span>";
+                }
                 if (standardform != "-")
                 {
-                    temp += standardform + "<br/>";
+                    temp += "<span style=\"font-family:Verdana; font-size:11pt\">[" + standardform + "]<br/></span>";
+                }
+                /*
+                if (komparation != "-")
+                {
+                    temp += "<span style=\"font-family:Verdana; font-size:11pt\">" + komparation + "<br/></span>";
                 }
                 if (konjugation != "-")
                 {
-                    temp += konjugation;
+                    temp += "<span style=\"font-family:Verdana; font-size:11pt\">" + konjugation + "<br/></span>";
                 }
+                if (kommentar != "-")
+                {
+                    temp += "<div style=\"border:1px solid black;\"><span style=\"font-family:Verdana; font-size:11pt\">" + kommentar + "<br/></span></div>";
+                }
+                */
                 index = (string)reader["Index"];
                 indexewoerter.Add(index);
                 list.Add(temp);
@@ -97,13 +159,13 @@ namespace WFDOTtoPDF
                     ostfriesisch = (string)reader2["Ostfriesisch"];
                     deutsch = (string)reader2["Deutsch"];
                     deutsch = "<i>" + deutsch + "</i>";
-                    temp = ostfriesisch + " " + deutsch + "<br/>";
+                    temp = "<span style=\"font-family:Verdana; font-size:11pt\">" + ostfriesisch + " " + deutsch + "<br/></span>";
                     final = final + temp;
                 }
                 writestring = writestring + final;
                 reader2.Close();
             }
-
+            writestring = "<!DOCTYPE html><html><body>" + writestring + "</body></html>";
             connection.Close();
             return writestring;
         }
