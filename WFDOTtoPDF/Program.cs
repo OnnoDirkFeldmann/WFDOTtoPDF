@@ -87,13 +87,13 @@ namespace WFDOTtoPDF
                     string genusstring = "Genusfehler";
                     switch (genus)
                     {
-                        case "masculinum":
+                        case "m":
                             genusstring = "m.";
                             break;
-                        case "femininum":
+                        case "f":
                             genusstring = "f.";
                             break;
-                        case "neutrum":
+                        case "n":
                             genusstring = "n.";
                             break;
                     }
