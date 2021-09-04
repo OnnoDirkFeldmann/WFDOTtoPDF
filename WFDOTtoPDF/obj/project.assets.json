@@ -24,6 +24,15 @@
           "buildTransitive/EntityFramework.targets": {}
         }
       },
+      "HTMLToWordConverterClient/1.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard1.1/HTMLtoWordConverterClient.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.1/HTMLtoWordConverterClient.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.6.0": {
         "type": "package",
         "compile": {
@@ -384,6 +393,18 @@
         "tools/netcoreapp3.0/any/ef6.dll",
         "tools/netcoreapp3.0/any/ef6.pdb",
         "tools/netcoreapp3.0/any/ef6.runtimeconfig.json"
+      ]
+    },
+    "HTMLToWordConverterClient/1.0.0": {
+      "sha512": "bjylC8EVzOTlRE4VQID9NwFVX1CjZ8HqibR0ji2S0zOeM/9PV74ApfnhkXbDaUjNU0uuEbrI7h56TD5prtYAUw==",
+      "type": "package",
+      "path": "htmltowordconverterclient/1.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "htmltowordconverterclient.1.0.0.nupkg.sha512",
+        "htmltowordconverterclient.nuspec",
+        "lib/netstandard1.1/HTMLtoWordConverterClient.dll"
       ]
     },
     "Microsoft.CSharp/4.6.0": {
@@ -1143,6 +1164,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
+      "HTMLToWordConverterClient >= 1.0.0",
       "System.Data.SQLite >= 1.0.113.7"
     ]
   },
@@ -1188,6 +1210,10 @@
     "frameworks": {
       "netcoreapp3.1": {
         "dependencies": {
+          "HTMLToWordConverterClient": {
+            "target": "Package",
+            "version": "[1.0.0, )"
+          },
           "System.Data.SQLite": {
             "target": "Package",
             "version": "[1.0.113.7, )"
