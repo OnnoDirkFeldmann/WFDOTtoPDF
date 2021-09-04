@@ -149,7 +149,7 @@ namespace WFDOTtoPDF
                 }
                 else
                 {
-                    ofrsprep.Value = ostfriesischewoerter[i] + "#" + indexewoerter[i];
+                    ofrsprep.Value = ostfriesischewoerter[i] + "=" + indexewoerter[i];
                 }
                 scdCommand2.Parameters.Add(ofrsprep);
                 scdCommand2.Prepare();
