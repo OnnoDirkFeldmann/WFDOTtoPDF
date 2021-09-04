@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "FQOUFTQUbepeKD+2ZvFi61BIkZIWeSsfjMM9LVQc0pVywLlTFDAy7hdcrqMlvL6d9N+3G0eDyueUIdvigOxXyg==",
+  "dgSpecHash": "XsvfIp223AtAwlugMk7WXgyfaSwYSg4wK88xIqZ6AejgZvMFGbp9CWl76vrin870HQuvmfwvZgtw1KXN4sVYDA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Neronno\\source\\repos\\WFDOTtoPDF\\WFDOTtoPDF\\WFDOTtoPDF.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Neronno\\.nuget\\packages\\entityframework\\6.3.0\\entityframework.6.3.0.nupkg.sha512",
+    "C:\\Users\\Neronno\\.nuget\\packages\\htmltowordconverterclient\\1.0.0\\htmltowordconverterclient.1.0.0.nupkg.sha512",
     "C:\\Users\\Neronno\\.nuget\\packages\\microsoft.csharp\\4.6.0\\microsoft.csharp.4.6.0.nupkg.sha512",
     "C:\\Users\\Neronno\\.nuget\\packages\\microsoft.netcore.platforms\\3.0.0\\microsoft.netcore.platforms.3.0.0.nupkg.sha512",
     "C:\\Users\\Neronno\\.nuget\\packages\\microsoft.win32.registry\\4.6.0\\microsoft.win32.registry.4.6.0.nupkg.sha512",

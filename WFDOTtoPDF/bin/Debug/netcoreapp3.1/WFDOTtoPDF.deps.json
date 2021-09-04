@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v3.1": {
       "WFDOTtoPDF/1.0.0": {
         "dependencies": {
+          "HTMLToWordConverterClient": "1.0.0",
           "System.Data.SQLite": "1.0.113.7"
         },
         "runtime": {
@@ -30,6 +31,14 @@
           "lib/netstandard2.1/EntityFramework.dll": {
             "assemblyVersion": "6.0.0.0",
             "fileVersion": "6.300.19.46401"
+          }
+        }
+      },
+      "HTMLToWordConverterClient/1.0.0": {
+        "runtime": {
+          "lib/netstandard1.1/HTMLtoWordConverterClient.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
           }
         }
       },
@@ -288,6 +297,13 @@
       "sha512": "sha512-mEvhoXscTyLFMcnbLzKlbWdx6N8fCY2IMe4drjUTMFqOqI4KThnTPXr1m50oXDJAn5PvCy2e90IcwN/OxkJUjg==",
       "path": "entityframework/6.3.0",
       "hashPath": "entityframework.6.3.0.nupkg.sha512"
+    },
+    "HTMLToWordConverterClient/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-bjylC8EVzOTlRE4VQID9NwFVX1CjZ8HqibR0ji2S0zOeM/9PV74ApfnhkXbDaUjNU0uuEbrI7h56TD5prtYAUw==",
+      "path": "htmltowordconverterclient/1.0.0",
+      "hashPath": "htmltowordconverterclient.1.0.0.nupkg.sha512"
     },
     "Microsoft.CSharp/4.6.0": {
       "type": "package",
