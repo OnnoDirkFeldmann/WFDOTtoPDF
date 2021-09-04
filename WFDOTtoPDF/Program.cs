@@ -16,7 +16,7 @@ namespace WFDOTtoPDF
                 case "1":
                     string html;
                     html = Tohtml();
-                    File.WriteAllText(@"C:\Users\Neronno\Desktop\test.html", html);
+                    File.WriteAllText(@"C:\Users\Neronno\Desktop\out.html", html);
                     break;
                 case "2":
 
