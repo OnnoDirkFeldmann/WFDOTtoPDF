@@ -11,7 +11,7 @@ namespace WFDOTtoPDF
         static void Main(string[] args)
         {
             string line;
-            Console.WriteLine("1=html 2=dic");
+            Console.WriteLine("1=html 2=dic 3=Tools");
             line = Console.ReadLine();
             switch (line)
             {
@@ -25,9 +25,32 @@ namespace WFDOTtoPDF
                     dic = Todic();
                     File.WriteAllText(@"C:\Users\Neronno\Desktop\frs.dic", dic);
                     break;
+                case "3":
+                    dublicatesWithoutIndex();
+                    break;
             }
 
         }
+
+        private static void dublicatesWithoutIndex()
+        {
+            SQLiteConnection connection = new SQLiteConnection();
+            connection.ConnectionString = @"Data Source=C:\Users\Neronno\source\repos\WFDOTtoPDF\WFDOTtoPDF\WFDOT.db";
+            connection.Open();
+            string sqlCom = "SELECT * FROM WB WHERE INDEX = '-'";
+            SQLiteCommand scdCommand = new SQLiteCommand(sqlCom, connection);
+            SQLiteDataReader reader = scdCommand.ExecuteReader();
+            var wordList = new List<string[]>();
+            while (reader.Read())
+            {
+                wordList.Add(new string[] { (string)reader["Ostfriesisch"], (string)reader["Index"] });
+            }
+
+            Console.Read();
+            reader.Close();
+            connection.Close();
+        }
+
         public static void Topdf(string html)
         {
 
