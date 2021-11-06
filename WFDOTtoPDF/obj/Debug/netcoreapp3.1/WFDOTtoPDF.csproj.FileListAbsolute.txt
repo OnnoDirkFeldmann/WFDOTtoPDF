@@ -1,5 +1,4 @@
 C:\Users\Neronno\source\repos\WFDOTtoPDF\WFDOTtoPDF\bin\Debug\netcoreapp3.1\WFDOTtoPDF.exe
-C:\Users\Neronno\source\repos\WFDOTtoPDF\WFDOTtoPDF\obj\Debug\netcoreapp3.1\WFDOTtoPDF.csprojAssemblyReference.cache
 C:\Users\Neronno\source\repos\WFDOTtoPDF\WFDOTtoPDF\obj\Debug\netcoreapp3.1\WFDOTtoPDF.AssemblyInfoInputs.cache
 C:\Users\Neronno\source\repos\WFDOTtoPDF\WFDOTtoPDF\obj\Debug\netcoreapp3.1\WFDOTtoPDF.AssemblyInfo.cs
 C:\Users\Neronno\source\repos\WFDOTtoPDF\WFDOTtoPDF\bin\Debug\netcoreapp3.1\WFDOTtoPDF.deps.json
@@ -37,6 +36,7 @@ C:\Users\Neronno\source\repos\WFDOTtoPDF\WFDOTtoPDF\bin\Debug\netcoreapp3.1\runt
 C:\Users\Neronno\source\repos\WFDOTtoPDF\WFDOTtoPDF\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
 C:\Users\Neronno\source\repos\WFDOTtoPDF\WFDOTtoPDF\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Neronno\source\repos\WFDOTtoPDF\WFDOTtoPDF\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
-C:\Users\Neronno\source\repos\WFDOTtoPDF\WFDOTtoPDF\obj\Debug\netcoreapp3.1\WFDOTtoPDF.csproj.CopyComplete
 C:\Users\Neronno\source\repos\WFDOTtoPDF\WFDOTtoPDF\bin\Debug\netcoreapp3.1\HTMLtoWordConverterClient.dll
 C:\Users\Neronno\source\repos\WFDOTtoPDF\WFDOTtoPDF\obj\Debug\netcoreapp3.1\WFDOTtoPDF.csproj.CoreCompileInputs.cache
+C:\Users\Neronno\source\repos\WFDOTtoPDF\WFDOTtoPDF\obj\Debug\netcoreapp3.1\WFDOTtoPDF.csproj.AssemblyReference.cache
+C:\Users\Neronno\source\repos\WFDOTtoPDF\WFDOTtoPDF\obj\Debug\netcoreapp3.1\WFDOTtoPDF.GeneratedMSBuildEditorConfig.editorconfig
