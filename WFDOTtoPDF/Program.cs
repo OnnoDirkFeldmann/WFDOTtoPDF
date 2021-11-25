@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Microsoft.Office.Interop.Excel;
+using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 
 namespace WFDOTtoPDF
 {
@@ -27,6 +29,9 @@ namespace WFDOTtoPDF
                     break;
                 case "3":
                     dublicatesWithoutIndex();
+                    break;
+                case "4":
+                    ExcelToSqlite(@"C:\Users\Neronno\Desktop\convert\WFDOT.xlsm", @"C:\Users\Neronno\Desktop\convert\WFDOT.db");
                     break;
             }
 
@@ -274,6 +279,69 @@ namespace WFDOTtoPDF
 
             //alles Trimmen
             return dictstring;
+        }
+
+        public static void ExcelToSqlite(string excelPath, string sqlitepath)
+        {
+            Application xlApp = new Application();
+            Workbook xlWorkbook = xlApp.Workbooks.Open(excelPath);
+            Worksheet xlWorksheet = xlWorkbook.Sheets[1];
+            Microsoft.Office.Interop.Excel.Range xlRange = xlWorksheet.UsedRange;
+
+            //Erste Zeile sind die Captions
+            var insertFront = "INSERT INTO WB (";
+            for (int j = 1; j <= 50; j++)
+            {
+                var cellValue = (string)(xlWorksheet.Cells[1, j] as Microsoft.Office.Interop.Excel.Range).Value;
+                insertFront += cellValue + ", ";
+            }
+            insertFront = insertFront.Substring(0, insertFront.Length - 2);
+            insertFront += ") ";
+
+            var insertList = new List<string>();
+            for (int i = 2; i <= xlRange.Rows.Count; i++)
+            {
+                string insert = insertFront + "VALUES (";
+                for (int j = 1; j <= 50; j++)
+                {
+                    var cell = xlWorksheet.Cells[i, j] as Microsoft.Office.Interop.Excel.Range;
+                    var cellValue = "";
+                    if (cell != null)
+                    {
+                        cellValue = (xlWorksheet.Cells[i, j] as Microsoft.Office.Interop.Excel.Range).Value.ToString();
+                    }
+                    insert += "\"cellValue\"" + ", ";
+                }
+                insert = insert.Substring(0, insert.Length - 2);
+                insert += ");";
+                insertList.Add(insert);
+                insert = "";
+            }
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            SQLiteConnection connection = new SQLiteConnection();
+            Marshal.ReleaseComObject(xlRange);
+            Marshal.ReleaseComObject(xlWorksheet);
+            xlWorkbook.Close();
+            Marshal.ReleaseComObject(xlWorkbook);
+            xlApp.Quit();
+            Marshal.ReleaseComObject(xlApp);
+            connection.ConnectionString = @"Data Source=" + sqlitepath;
+            connection.Open();
+            SQLiteCommand scdCommand = new SQLiteCommand("DELETE FROM WB;", connection);
+            scdCommand.ExecuteNonQuery();
+            scdCommand = new SQLiteCommand("DROP TABLE WBFTS;", connection);
+            scdCommand.ExecuteNonQuery();
+            foreach (string insert in insertList)
+            {
+                scdCommand = new SQLiteCommand(insert, connection);
+                scdCommand.ExecuteNonQuery();
+            }
+            scdCommand = new SQLiteCommand("CREATE VIRTUAL TABLE WBFTS USING FTS4(ID, Ostfriesisch, Deutsch, Artikel, Wortart, Plural, Genus, Komparation, Konjugation, Nebenformen, Standardform, tokenize=unicode61);", connection);
+            scdCommand.ExecuteNonQuery();
+            scdCommand = new SQLiteCommand("Insert INTO WBFTS (ID, Ostfriesisch, Deutsch, Artikel, Wortart, Plural, Genus, Komparation, Konjugation, Nebenformen, Standardform) SELECT ID, Ostfriesisch, Deutsch, Artikel, Wortart, Plural, Genus, Komparation, Konjugation, Nebenformen, Standardform FROM WB; ", connection);
+            scdCommand.ExecuteNonQuery();
+            connection.Close();
         }
     }
 }

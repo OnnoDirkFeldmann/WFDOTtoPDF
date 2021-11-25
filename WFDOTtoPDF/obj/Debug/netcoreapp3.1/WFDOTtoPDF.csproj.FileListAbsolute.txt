@@ -40,3 +40,6 @@ C:\Users\Neronno\source\repos\WFDOTtoPDF\WFDOTtoPDF\bin\Debug\netcoreapp3.1\HTML
 C:\Users\Neronno\source\repos\WFDOTtoPDF\WFDOTtoPDF\obj\Debug\netcoreapp3.1\WFDOTtoPDF.csproj.CoreCompileInputs.cache
 C:\Users\Neronno\source\repos\WFDOTtoPDF\WFDOTtoPDF\obj\Debug\netcoreapp3.1\WFDOTtoPDF.csproj.AssemblyReference.cache
 C:\Users\Neronno\source\repos\WFDOTtoPDF\WFDOTtoPDF\obj\Debug\netcoreapp3.1\WFDOTtoPDF.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Neronno\source\repos\WFDOTtoPDF\WFDOTtoPDF\bin\Debug\netcoreapp3.1\Interop.Microsoft.Office.Interop.Excel.dll
+C:\Users\Neronno\source\repos\WFDOTtoPDF\WFDOTtoPDF\obj\Debug\netcoreapp3.1\Interop.Microsoft.Office.Interop.Excel.dll
+C:\Users\Neronno\source\repos\WFDOTtoPDF\WFDOTtoPDF\obj\Debug\netcoreapp3.1\WFDOTtoPDF.csproj.ResolveComReference.cache
