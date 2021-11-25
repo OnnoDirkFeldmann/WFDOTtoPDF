@@ -9,7 +9,8 @@
       "WFDOTtoPDF/1.0.0": {
         "dependencies": {
           "HTMLToWordConverterClient": "1.0.0",
-          "System.Data.SQLite": "1.0.113.7"
+          "System.Data.SQLite": "1.0.113.7",
+          "Interop.Microsoft.Office.Interop.Excel": "1.8.0.0"
         },
         "runtime": {
           "WFDOTtoPDF.dll": {}
@@ -282,6 +283,14 @@
             "fileVersion": "4.700.19.46214"
           }
         }
+      },
+      "Interop.Microsoft.Office.Interop.Excel/1.8.0.0": {
+        "runtime": {
+          "Interop.Microsoft.Office.Interop.Excel.dll": {
+            "assemblyVersion": "1.8.0.0",
+            "fileVersion": "1.8.0.0"
+          }
+        }
       }
     }
   },
@@ -458,6 +467,11 @@
       "sha512": "sha512-GL4izk0KgeyXklUOHViAk7y1IOYVYcn8nDpJZgcCqNzTGv2xd+8rgGgMKMo8G9nvfEuRCrNxWnGc74EiuYH2YA==",
       "path": "system.windows.extensions/4.6.0",
       "hashPath": "system.windows.extensions.4.6.0.nupkg.sha512"
+    },
+    "Interop.Microsoft.Office.Interop.Excel/1.8.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }
