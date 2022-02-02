@@ -5,6 +5,7 @@ using System.Data.SQLite;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace WFDOTtoPDF
@@ -26,7 +27,7 @@ namespace WFDOTtoPDF
                 case "2":
                     string dic;
                     dic = Todic();
-                    File.WriteAllText(@"C:\Users\Neronno\Desktop\frs.dic", dic);
+                    File.WriteAllText(@"C:\Users\Neronno\Desktop\frs.dic", dic, Encoding.Unicode);
                     break;
                 case "3":
                     dublicatesWithoutIndex();
@@ -226,7 +227,7 @@ namespace WFDOTtoPDF
                 dicw.AddRange(ofrs.Split(" "));
                 string plural;
                 plural = (string)reader["Plural"];
-                if (plural != "-")
+                if (!plural.Equals("-"))
                 {
                     plural = plural.Replace(",", " ");
                     plural = plural.Replace("\n", " ");
@@ -235,7 +236,7 @@ namespace WFDOTtoPDF
                 }
                 string komparation;
                 komparation = (string)reader["Komparation"];
-                if (komparation != "-")
+                if (!komparation.Equals("-"))
                 {
                     komparation = komparation.Replace("stark<br/>Positiv: ", " ");
                     komparation = komparation.Replace("schwach<br/>Positiv: ", " ");
@@ -253,7 +254,7 @@ namespace WFDOTtoPDF
                 }
                 string konjugation;
                 konjugation = (string)reader["Konjugation"];
-                if (konjugation != "-")
+                if (!konjugation.Equals("-"))
                 {
                     konjugation = konjugation.Replace("stark<br/>Inf.: ", " ");
                     konjugation = konjugation.Replace("schwach<br/>Inf.: ", " ");
