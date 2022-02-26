@@ -15,7 +15,7 @@ namespace WFDOTtoPDF
         static void Main(string[] args)
         {
             string line;
-            Console.WriteLine("1=html 2=dic 3=Tools");
+            Console.WriteLine("1=html 2=dic 3=Tools 4=? 5=Falsche Zuordnungen");
             line = Console.ReadLine();
             switch (line)
             {
@@ -35,8 +35,61 @@ namespace WFDOTtoPDF
                 case "4":
                     ExcelToSqlite(@"C:\Users\Neronno\Desktop\convert\export.xlsm", @"C:\Users\Neronno\Desktop\convert\export.db");
                     break;
+                case "5":
+                    ShowWrongReference();
+                    break;
             }
 
+        }
+
+        private static void ShowWrongReference()
+        {
+            SQLiteConnection connection = new SQLiteConnection();
+            connection.ConnectionString = @"Data Source=C:\Users\Neronno\source\repos\WFDOTtoPDF\WFDOTtoPDF\WFDOT.db";
+            connection.Open();
+            string sqlCom = "SELECT * FROM WB WHERE Wortart = 'Phrase' AND Zuordnung != '-'";
+            SQLiteCommand scdCommand = new SQLiteCommand(sqlCom, connection);
+            SQLiteDataReader reader = scdCommand.ExecuteReader();
+            var wordList = new Dictionary<long, string[]>();
+            while (reader.Read())
+            {
+                wordList.Add((long)reader["ID"], new string[] { (string)reader["Ostfriesisch"], (string)reader["Zuordnung"] });
+            }
+            foreach (KeyValuePair<long, string[]> word in wordList)
+            {
+                var splitted = word.Value[1].Split('=');
+                string sqlCom2 = "SELECT COUNT(*) FROM WB WHERE Ostfriesisch = @ofrs";
+                SQLiteParameter ofrsprep = new SQLiteParameter("@ofrs");
+                SQLiteParameter index = new SQLiteParameter("@index");
+                if (word.Value[0].Contains("achtdóóğs"))
+                {
+                    var a = 1;
+                }
+                ofrsprep.Value = splitted[0];
+                if (splitted.Length == 2)
+                {
+                    sqlCom2 = "SELECT COUNT(*) FROM WB WHERE Ostfriesisch = @ofrs AND \"Index\" = @index";
+                    index.Value = splitted[1];
+                }
+                SQLiteCommand scdCommand2 = new SQLiteCommand(sqlCom2, connection);
+                scdCommand2.Parameters.Add(ofrsprep);
+                scdCommand2.Parameters.Add(index);
+                scdCommand2.Prepare();  
+                SQLiteDataReader reader2 = scdCommand2.ExecuteReader();
+                while (reader2.Read())
+                {
+                    var count = reader2.GetInt64(0);
+                    if (count != 1)
+                    {
+                        Console.WriteLine(word.Key + word.Value[0]);
+                    }
+                }
+            }
+
+
+            Console.Read();
+            reader.Close();
+            connection.Close();
         }
 
         private static void dublicatesWithoutIndex()
@@ -199,6 +252,22 @@ namespace WFDOTtoPDF
                 writestring = writestring + final;
                 reader2.Close();
             }
+            //Phrasen ohne Zuordnung
+            string addition = "<span style=\"font-family:Verdana; font-size:11pt\"><br/><br/>Unzugeordnete Phrasen:<br/><br/><br/></span>";
+            string sqlCom3 = "SELECT * FROM WB WHERE Wortart = 'Phrase' AND Zuordnung = '-'";
+            SQLiteCommand scdCommand3 = new SQLiteCommand(sqlCom3, connection);
+            scdCommand3.Prepare();
+            SQLiteDataReader reader3 = scdCommand3.ExecuteReader();
+            while (reader3.Read())
+            {
+                ostfriesisch = (string)reader3["Ostfriesisch"];
+                deutsch = (string)reader3["Deutsch"];
+                deutsch = "<i>" + deutsch + "</i>";
+                temp = "<span style=\"font-family:Verdana; font-size:11pt\">" + ostfriesisch + " " + deutsch + "<br/></span>";
+                addition = addition + temp;
+            }
+            reader3.Close();
+            writestring = writestring + addition;
             writestring = "<!DOCTYPE html><html><body>" + writestring + "</body></html>";
             connection.Close();
             return writestring;
