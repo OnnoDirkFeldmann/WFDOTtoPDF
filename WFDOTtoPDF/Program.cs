@@ -61,10 +61,6 @@ namespace WFDOTtoPDF
                 string sqlCom2 = "SELECT COUNT(*) FROM WB WHERE Ostfriesisch = @ofrs";
                 SQLiteParameter ofrsprep = new SQLiteParameter("@ofrs");
                 SQLiteParameter index = new SQLiteParameter("@index");
-                if (word.Value[0].Contains("achtdóóğs"))
-                {
-                    var a = 1;
-                }
                 ofrsprep.Value = splitted[0];
                 if (splitted.Length == 2)
                 {
