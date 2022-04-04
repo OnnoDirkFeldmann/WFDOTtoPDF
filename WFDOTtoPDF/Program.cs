@@ -15,27 +15,32 @@ namespace WFDOTtoPDF
         static void Main(string[] args)
         {
             string line;
-            Console.WriteLine("1=html 2=dic 3=Tools 4=? 5=Falsche Zuordnungen");
+            Console.WriteLine("1=html 2=html (full) 3=dic 4=Tools 5=? 6=Falsche Zuordnungen");
             line = Console.ReadLine();
             switch (line)
             {
                 case "1":
                     string html;
-                    html = Tohtml();
+                    html = Tohtml(false);
                     File.WriteAllText(@"C:\Users\Neronno\Desktop\out.html", html);
                     break;
                 case "2":
+                    string htmlFull;
+                    htmlFull = Tohtml(true);
+                    File.WriteAllText(@"C:\Users\Neronno\Desktop\outfull.html", htmlFull);
+                    break;
+                case "3":
                     string dic;
                     dic = Todic();
                     File.WriteAllText(@"C:\Users\Neronno\Desktop\frs.dic", dic, Encoding.Unicode);
                     break;
-                case "3":
+                case "4":
                     dublicatesWithoutIndex();
                     break;
-                case "4":
+                case "5":
                     ExcelToSqlite(@"C:\Users\Neronno\Desktop\convert\export.xlsm", @"C:\Users\Neronno\Desktop\convert\export.db");
                     break;
-                case "5":
+                case "6":
                     ShowWrongReference();
                     break;
             }
@@ -70,7 +75,7 @@ namespace WFDOTtoPDF
                 SQLiteCommand scdCommand2 = new SQLiteCommand(sqlCom2, connection);
                 scdCommand2.Parameters.Add(ofrsprep);
                 scdCommand2.Parameters.Add(index);
-                scdCommand2.Prepare();  
+                scdCommand2.Prepare();
                 SQLiteDataReader reader2 = scdCommand2.ExecuteReader();
                 while (reader2.Read())
                 {
@@ -82,7 +87,7 @@ namespace WFDOTtoPDF
                 }
             }
 
-
+            Console.WriteLine("---Done");
             Console.Read();
             reader.Close();
             connection.Close();
@@ -111,7 +116,7 @@ namespace WFDOTtoPDF
         {
 
         }
-        public static string Tohtml()
+        public static string Tohtml(bool fullversion)
         {
             SQLiteConnection connection = new SQLiteConnection();
             connection.ConnectionString = @"Data Source=C:\Users\Neronno\source\repos\WFDOTtoPDF\WFDOTtoPDF\WFDOT.db";
@@ -136,6 +141,9 @@ namespace WFDOTtoPDF
             string nebenformen;
             string writestring;
             string kommentar;
+            string autorKommentar;
+            string rezept;
+            string interferenz;
             writestring = "";
             List<string> list = new List<string>();
             List<string> ostfriesischewoerter = new List<string>();
@@ -152,19 +160,105 @@ namespace WFDOTtoPDF
                 plural = (string)reader["Plural"];
                 wortart = (string)reader["Wortart"];
                 genus = (string)reader["Genus"];
-                komparation = (string)reader["Komparation"];
                 nebenformen = (string)reader["Nebenformen"];
+                komparation = (string)reader["Komparation"];
                 konjugation = (string)reader["Konjugation"];
                 kommentar = (string)reader["Kommentar"];
+                autorKommentar = (string)reader["Autorkommentar"];
+                rezept = (string)reader["Rezept"];
+                interferenz = (string)reader["Interferenz"];
+
                 temp = ostfriesisch;
-                if (artikel != "-" || plural != "-")
+
+                string wortartstring = "Wortartfehler";
+                if (wortart != "-")
+                {
+                    switch (wortart)
+                    {
+                        case "Abkürzung":
+                            wortartstring = "-";
+                            break;
+                        case "Adjektiv":
+                            wortartstring = "-";
+                            break;
+                        case "Adverb":
+                            wortartstring = "-";
+                            break;
+                        case "Artikel":
+                            wortartstring = "-";
+                            break;
+                        case "Ausruf":
+                            wortartstring = "-";
+                            break;
+                        case "Flexionsform":
+                            wortartstring = "-";
+                            break;
+                        case "Interrogativpronomen":
+                            wortartstring = "-";
+                            break;
+                        case "Konjunktion":
+                            wortartstring = "-";
+                            break;
+                        case "Nachsilbe":
+                            wortartstring = "-";
+                            break;
+                        case "Name":
+                            wortartstring = "-";
+                            break;
+                        case "Numeral":
+                            wortartstring = "-";
+                            break;
+                        case "Ortsname":
+                            wortartstring = "-";
+                            break;
+                        case "Partikel":
+                            wortartstring = "-";
+                            break;
+                        case "Partizip":
+                            wortartstring = "-";
+                            break;
+                        case "Phrase":
+                            wortartstring = "-";
+                            break;
+                        case "Pronomen":
+                            wortartstring = "-";
+                            break;
+                        case "Pronominaladverb":
+                            wortartstring = "-";
+                            break;
+                        case "Substantiv":
+                            wortartstring = "-";
+                            break;
+                        case "Verb":
+                            wortartstring = "-";
+                            break;
+                        case "Vorsilbe":
+                            wortartstring = "-";
+                            break;
+                        case "Zwischensilbe":
+                            wortartstring = "-";
+                            break;
+                    }
+                }
+
+                
+
+                if (artikel != "-" || genus != "-" || plural != "-" || (wortart != "-" && wortartstring != "-"))
                 {
                     temp += "<span style=\"font-family:Verdana; font-size:12pt\"> [</span>";
                 }
+
+                if (wortartstring != "-")
+                {
+                    temp += "<span style=\"font-family:Verdana; font-size:12pt\">, " + wortartstring + "</span>";
+                }
+                
+
                 if (artikel != "-")
                 {
                     temp += "<span style=\"font-family:Verdana; font-size:12pt\">" + artikel + "</span>";
                 }
+
                 if (genus != "-")
                 {
                     string genusstring = "Genusfehler";
@@ -182,14 +276,17 @@ namespace WFDOTtoPDF
                     }
                     temp += "<span style=\"font-family:Verdana; font-size:12pt\">, " + genusstring + "</span>";
                 }
+
                 if (plural != "-")
                 {
                     temp += "<span style=\"font-family:Verdana; font-size:12pt\">, " + plural + "</span>";
                 }
-                if (artikel != "-" || plural != "-")
+
+                if (artikel != "-" || genus != "-" || plural != "-" || (wortart != "-" && wortartstring != "-"))
                 {
                     temp += "<span style=\"font-family:Verdana; font-size:12pt\">]</span>";
                 }
+
                 temp += "<i><span style=\"font-family:Verdana; font-size:12pt\"> " + deutsch + "<br/></span></i>";
                 if (nebenformen != "-")
                 {
@@ -199,20 +296,35 @@ namespace WFDOTtoPDF
                 {
                     temp += "<span style=\"font-family:Verdana; font-size:11pt\">[" + standardform + "]<br/></span>";
                 }
-                /*
-                if (komparation != "-")
+
+                if (fullversion)
                 {
-                    temp += "<span style=\"font-family:Verdana; font-size:11pt\">" + komparation + "<br/></span>";
+                    if (komparation != "-")
+                    {
+                        temp += "<span style=\"font-family:Verdana; font-size:11pt\">" + komparation + "<br/></span>";
+                    }
+                    if (konjugation != "-")
+                    {
+                        temp += "<span style=\"font-family:Verdana; font-size:11pt\">" + konjugation + "<br/></span>";
+                    }
+                    if (kommentar != "-")
+                    {
+                        temp += "<div style=\"border:1px solid black;\"><span style=\"font-family:Verdana; font-size:11pt\">" + kommentar + "<br/></span></div>";
+                    }
+                    if (autorKommentar != "-")
+                    {
+                        temp += "<div style=\"border:1px solid black;\"><span style=\"font-family:Verdana; font-size:11pt\">" + autorKommentar + "<br/></span></div>";
+                    }
+                    if (rezept != "-")
+                    {
+                        temp += "<div style=\"border:1px solid black;\"><span style=\"font-family:Verdana; font-size:11pt\">" + rezept + "<br/></span></div>";
+                    }
+                    if (interferenz != "-")
+                    {
+                        temp += "<div style=\"border:1px solid black;\"><span style=\"font-family:Verdana; font-size:11pt\">" + interferenz + "<br/></span></div>";
+                    }
                 }
-                if (konjugation != "-")
-                {
-                    temp += "<span style=\"font-family:Verdana; font-size:11pt\">" + konjugation + "<br/></span>";
-                }
-                if (kommentar != "-")
-                {
-                    temp += "<div style=\"border:1px solid black;\"><span style=\"font-family:Verdana; font-size:11pt\">" + kommentar + "<br/></span></div>";
-                }
-                */
+
                 index = (string)reader["Index"];
                 indexewoerter.Add(index);
                 list.Add(temp);

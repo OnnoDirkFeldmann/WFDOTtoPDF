@@ -43,3 +43,4 @@ C:\Users\Neronno\source\repos\WFDOTtoPDF\WFDOTtoPDF\obj\Debug\netcoreapp3.1\WFDO
 C:\Users\Neronno\source\repos\WFDOTtoPDF\WFDOTtoPDF\bin\Debug\netcoreapp3.1\Interop.Microsoft.Office.Interop.Excel.dll
 C:\Users\Neronno\source\repos\WFDOTtoPDF\WFDOTtoPDF\obj\Debug\netcoreapp3.1\Interop.Microsoft.Office.Interop.Excel.dll
 C:\Users\Neronno\source\repos\WFDOTtoPDF\WFDOTtoPDF\obj\Debug\netcoreapp3.1\WFDOTtoPDF.csproj.ResolveComReference.cache
+C:\Users\Neronno\source\repos\WFDOTtoPDF\WFDOTtoPDF\obj\Debug\netcoreapp3.1\WFDOTtoPDF.csproj.CopyComplete
