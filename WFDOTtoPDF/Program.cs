@@ -8,8 +8,9 @@ namespace WFDOTtoPDF
     {
         static void Main(string[] args)
         {
+            Console.OutputEncoding = Encoding.UTF8;
             string line;
-            Console.WriteLine("1=html 2=html (full) 3=dic 4=Tools 5=? 6=Falsche Zuordnungen");
+            Console.WriteLine("1=html 2=html (full) 3=docx 4=docx (full) 5=dic 6=Tools 7=? 8=Falsche Zuordnungen");
             line = Console.ReadLine();
             switch (line)
             {
@@ -24,17 +25,23 @@ namespace WFDOTtoPDF
                     File.WriteAllText(@"C:\Users\Neronno\Desktop\outfull.html", htmlFull);
                     break;
                 case "3":
+                    WFDOTToDocx.ToDocx(false, @"C:\Users\Neronno\Desktop\out.docx", false);
+                    break;
+                case "4":
+                    WFDOTToDocx.ToDocx(true, @"C:\Users\Neronno\Desktop\outfull.docx", false);
+                    break;
+                case "5":
                     string dic;
                     dic = WFDOTToDic.Todic();
                     File.WriteAllText(@"C:\Users\Neronno\Desktop\frs.dic", dic, Encoding.Unicode);
                     break;
-                case "4":
+                case "6":
                     WFDOTChecker.DublicatesWithoutIndex();
                     break;
-                case "5":
+                case "7":
                     ExcelToWFDOT.ExcelToSqlite(@"C:\Users\Neronno\Desktop\convert\export.xlsm", @"C:\Users\Neronno\Desktop\convert\export.db");
                     break;
-                case "6":
+                case "8":
                     WFDOTChecker.ShowWrongReference();
                     break;
             }

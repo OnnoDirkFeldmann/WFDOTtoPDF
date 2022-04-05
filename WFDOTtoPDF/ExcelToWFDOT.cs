@@ -73,12 +73,20 @@ namespace WFDOTtoPDF
             }
             GC.Collect();
             GC.WaitForPendingFinalizers();
+#pragma warning disable CA1416 // Plattformkompatibilität überprüfen
             Marshal.ReleaseComObject(xlRange);
+#pragma warning restore CA1416 // Plattformkompatibilität überprüfen
+#pragma warning disable CA1416 // Plattformkompatibilität überprüfen
             Marshal.ReleaseComObject(xlWorksheet);
+#pragma warning restore CA1416 // Plattformkompatibilität überprüfen
             xlWorkbook.Close();
+#pragma warning disable CA1416 // Plattformkompatibilität überprüfen
             Marshal.ReleaseComObject(xlWorkbook);
+#pragma warning restore CA1416 // Plattformkompatibilität überprüfen
             xlApp.Quit();
+#pragma warning disable CA1416 // Plattformkompatibilität überprüfen
             Marshal.ReleaseComObject(xlApp);
+#pragma warning restore CA1416 // Plattformkompatibilität überprüfen
             scdCommand = new SQLiteCommand("CREATE VIRTUAL TABLE WBFTS USING FTS4(ID, Ostfriesisch, Deutsch, Artikel, Wortart, Plural, Genus, Komparation, Konjugation, Nebenformen, Standardform, tokenize=unicode61);", connection);
             scdCommand.ExecuteNonQuery();
             scdCommand = new SQLiteCommand("Insert INTO WBFTS (ID, Ostfriesisch, Deutsch, Artikel, Wortart, Plural, Genus, Komparation, Konjugation, Nebenformen, Standardform) SELECT ID, Ostfriesisch, Deutsch, Artikel, Wortart, Plural, Genus, Komparation, Konjugation, Nebenformen, Standardform FROM WB; ", connection);
