@@ -8,12 +8,25 @@
     ".NETCoreApp,Version=v3.1": {
       "WFDOTtoPDF/1.0.0": {
         "dependencies": {
+          "DocX": "2.1.0",
           "HTMLToWordConverterClient": "1.0.0",
           "System.Data.SQLite": "1.0.113.7",
           "Interop.Microsoft.Office.Interop.Excel": "1.8.0.0"
         },
         "runtime": {
           "WFDOTtoPDF.dll": {}
+        }
+      },
+      "DocX/2.1.0": {
+        "runtime": {
+          "lib/net40/Xceed.Document.NET.dll": {
+            "assemblyVersion": "2.1.0.0",
+            "fileVersion": "2.1.0.0"
+          },
+          "lib/net40/Xceed.Words.NET.dll": {
+            "assemblyVersion": "2.1.0.0",
+            "fileVersion": "2.1.0.0"
+          }
         }
       },
       "EntityFramework/6.3.0": {
@@ -299,6 +312,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "DocX/2.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-nuOq9M/1crnv53WzifXCdObqGPRCylDsByxMUA8HkW4IFZn1k3E7CgoFRfWdMJjbKtLYqY00tvdLUCAN9gsjTg==",
+      "path": "docx/2.1.0",
+      "hashPath": "docx.2.1.0.nupkg.sha512"
     },
     "EntityFramework/6.3.0": {
       "type": "package",
