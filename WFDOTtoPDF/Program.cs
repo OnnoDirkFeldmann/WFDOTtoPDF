@@ -25,10 +25,10 @@ namespace WFDOTtoPDF
                     File.WriteAllText(@"C:\Users\Neronno\Desktop\outfull.html", htmlFull);
                     break;
                 case "3":
-                    WFDOTToDocx.ToDocx(false, @"C:\Users\Neronno\Desktop\out.docx", false);
+                    WFDOTToDocx.ToDocx(false, @"C:\Users\Neronno\Desktop\gen", false);
                     break;
                 case "4":
-                    WFDOTToDocx.ToDocx(true, @"C:\Users\Neronno\Desktop\outfull.docx", false);
+                    WFDOTToDocx.ToDocx(true, @"C:\Users\Neronno\Desktop\gen", false);
                     break;
                 case "5":
                     string dic;

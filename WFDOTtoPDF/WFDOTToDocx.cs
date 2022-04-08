@@ -1,16 +1,30 @@
 ﻿using Novacode;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SQLite;
+using System.IO;
 using System.Linq;
 
 namespace WFDOTtoPDF
 {
     public class WFDOTToDocx
     {
-        public static void ToDocx(bool fullversion, string fileName, bool testMode)
+        public static void ToDocx(bool fullversion, string path, bool testMode)
         {
-            var doc = DocX.Create(fileName);
+            Directory.Delete(path, true);
+            Directory.CreateDirectory(path);
+            SQLiteConnection connection = new SQLiteConnection();
+            connection.ConnectionString = @"Data Source=C:\Users\Neronno\source\repos\WFDOTtoPDF\WFDOTtoPDF\WFDOT.db";
+            connection.Open();
+            var sql1 = testMode ? "SELECT * FROM WB WHERE Ostfriesisch Like 'a%'" : "SELECT * FROM WB";
+            string sqlCom = sql1;
+            SQLiteCommand scdCommand = new SQLiteCommand(sqlCom, connection);
+            SQLiteDataReader reader = scdCommand.ExecuteReader();
+            WFDOT wfdot = new WFDOT();
+            wfdot._WFDOT.Load(reader);
+            reader.Close();
+            connection.Close();
 
             var wordFormat = new Formatting();
             wordFormat.FontFamily = new Font("Verdana");
@@ -30,67 +44,37 @@ namespace WFDOTtoPDF
             textFormatItalic.Size = 11D;
             textFormatItalic.Italic = true;
 
-            SQLiteConnection connection = new SQLiteConnection();
-            connection.ConnectionString = @"Data Source=C:\Users\Neronno\source\repos\WFDOTtoPDF\WFDOTtoPDF\WFDOT.db";
-            connection.Open();
-
-            var sql1 = testMode ? "SELECT * FROM WB WHERE Wortart != 'Phrase' AND Ostfriesisch Like 'a%'" : "SELECT * FROM WB WHERE Wortart != 'Phrase'";
-            string sqlCom = sql1;
-            SQLiteCommand scdCommand = new SQLiteCommand(sqlCom, connection);
-            SQLiteDataReader reader = scdCommand.ExecuteReader();
-
             //Ostfriesische Begriffe holen
-            string ostfriesisch;
-            string standardform;
-            string konjugation;
-            string index;
-            string deutsch;
-            string artikel;
-            string plural;
-            string wortart;
-            string genus;
-            string komparation;
-            string nebenformen;
-            string kommentar;
-            string autorKommentar;
-            string rezept;
-            string interferenz;
-            List<string> list = new List<string>();
-            List<string> ostfriesischewoerter = new List<string>();
-            List<string> indexewoerter = new List<string>();
-            List<string> list2 = new List<string>();
+            var files = new List<string>();
             var i = 0;
-            while (reader.Read())
+            var docIndex = 0;
+            var entries = wfdot._WFDOT.Where(x => x.Wortart != "Phrase").ToList();
+            var fileOne = $@"{path}\out{docIndex}.docx";
+            files.Add(fileOne);
+            var doc = DocX.Create(fileOne);
+            foreach (var row in entries)
             {
-                var paragraph = doc.InsertParagraph("", false, wordFormat);
-                ostfriesisch = (string)reader["Ostfriesisch"];
-                deutsch = (string)reader["Deutsch"];
-                standardform = (string)reader["Standardform"];
-                artikel = (string)reader["Artikel"];
-                plural = (string)reader["Plural"];
-                wortart = (string)reader["Wortart"];
-                genus = (string)reader["Genus"];
-                nebenformen = (string)reader["Nebenformen"];
-                komparation = (string)reader["Komparation"];
-                konjugation = (string)reader["Konjugation"];
-                kommentar = (string)reader["Kommentar"];
-                autorKommentar = (string)reader["Autorkommentar"];
-                rezept = (string)reader["Rezept"];
-                interferenz = (string)reader["Interferenz"];
-                index = (string)reader["Index"];
-
-                if (i%100 == 0)
+                if (i % 1000 == 0 && i != 0)
                 {
-                    Console.WriteLine(ostfriesisch);
+                    docIndex++;
+                    doc.Save();
+                    var fileNext = $@"{path}\out{docIndex}.docx";
+                    files.Add(fileNext);
+                    doc = DocX.Create(fileNext);
+                    Console.WriteLine(row.Ostfriesisch);
                 }
                 i++;
 
-                paragraph.InsertText(ostfriesisch, false, wordFormatBold);
+                var paragraph = doc.InsertParagraph("", false, wordFormat);
+
+
+                paragraph.InsertText(row.Ostfriesisch, false, wordFormatBold);
 
                 string wortartstring = "Wortartfehler";
-                if (wortart != "-")
+
+                if (row.Wortart != "-")
                 {
-                    switch (wortart)
+                    switch (row.Wortart)
                     {
                         case "Abkürzung":
                             wortartstring = "-";
@@ -158,26 +142,26 @@ namespace WFDOTtoPDF
                     }
                 }
 
-                if (artikel != "-" || genus != "-" || plural != "-" || (wortart != "-" && wortartstring != "-"))
+                if (row.Artikel != "-" || row.Genus != "-" || row.Plural != "-" || (row.Wortart != "-" && wortartstring != "-"))
                 {
                     paragraph.InsertText(" [", false, wordFormat);
                 }
 
-                if (artikel != "-")
+                if (row.Artikel != "-")
                 {
-                    paragraph.InsertText(artikel, false, wordFormat);
+                    paragraph.InsertText(row.Artikel, false, wordFormat);
                 }
 
                 if (wortartstring != "-")
                 {
-                    if (artikel != "-") paragraph.InsertText(", ", false, wordFormat);
+                    if (row.Artikel != "-") paragraph.InsertText(", ", false, wordFormat);
                     paragraph.InsertText(wortartstring, false, wordFormat);
                 }
 
-                if (genus != "-")
+                if (row.Genus != "-")
                 {
                     string genusstring = "Genusfehler";
-                    switch (genus)
+                    switch (row.Genus)
                     {
                         case "m":
                             genusstring = "m.";
@@ -189,39 +173,40 @@ namespace WFDOTtoPDF
                             genusstring = "n.";
                             break;
                     }
-                    if (artikel != "-" || wortartstring != "-") paragraph.InsertText(", ", false, wordFormat);
+                    if (row.Artikel != "-" || wortartstring != "-") paragraph.InsertText(", ", false, wordFormat);
                     paragraph.InsertText(genusstring, false, wordFormat);
                 }
 
-                if (plural != "-")
+                if (row.Plural != "-")
                 {
-                    if (artikel != "-" || wortartstring != "-" || plural != "-") paragraph.InsertText(", ", false, wordFormat);
-                    paragraph.InsertText(plural, false, wordFormat);
+                    if (row.Artikel != "-" || wortartstring != "-" || row.Plural != "-") paragraph.InsertText(", ", false, wordFormat);
+                    paragraph.InsertText(row.Plural, false, wordFormat);
                 }
 
-                if (artikel != "-" || genus != "-" || plural != "-" || (wortart != "-" && wortartstring != "-"))
+                if (row.Artikel != "-" || row.Genus != "-" || row.Plural != "-" || (row.Wortart != "-" && wortartstring != "-"))
                 {
                     paragraph.InsertText("]", false, wordFormat);
                 }
 
                 paragraph.InsertText(" ", false, wordFormat);
-                paragraph.InsertText(deutsch, false, wordFormat);
+                paragraph.InsertText(row.Deutsch, false, wordFormat);
 
-                if (nebenformen != "-")
+                if (row.Nebenformen != "-")
                 {
                     paragraph.InsertText(Environment.NewLine, false, wordFormat);
-                    paragraph.InsertText($"[NF: {nebenformen}]", false, wordFormat);
+                    paragraph.InsertText($"[NF: {row.Nebenformen}]", false, wordFormat);
                 }
-                if (standardform != "-")
+                if (row.Standardform != "-")
                 {
                     paragraph.InsertText(Environment.NewLine, false, wordFormat);
-                    paragraph.InsertText($"[{standardform}]", false, wordFormat);
+                    paragraph.InsertText($"[{row.Standardform}]", false, wordFormat);
                 }
 
                 if (fullversion)
                 {
-                    if (komparation != "-")
+                    if (row.Komparation != "-")
                     {
+                        var komparation = row.Komparation;
                         komparation = komparation.Substring(0, komparation.Length - 5);
                         komparation = komparation.Replace("<br/>", "; ");
                         var table = doc.AddTable(1, 1);
@@ -229,8 +214,9 @@ namespace WFDOTtoPDF
                         table.AutoFit = AutoFit.Window;
                         doc.InsertTable(table);
                     }
-                    if (konjugation != "-")
+                    if (row.Konjugation != "-")
                     {
+                        var konjugation = row.Konjugation;
                         konjugation = konjugation.Substring(0, konjugation.Length - 5);
                         konjugation = konjugation.Replace("<br/>", "; ");
                         var table = doc.AddTable(1, 1);
@@ -238,85 +224,76 @@ namespace WFDOTtoPDF
                         table.AutoFit = AutoFit.Window;
                         doc.InsertTable(table);
                     }
-                    if (kommentar != "-")
+                    if (row.Kommentar != "-")
                     {
                         var table = doc.AddTable(1, 1);
-                        table.Rows[0].Cells[0].Paragraphs.First().Append(kommentar);
+                        table.Rows[0].Cells[0].Paragraphs.First().Append(row.Kommentar);
                         table.AutoFit = AutoFit.Window;
                         doc.InsertTable(table);
                     }
-                    if (autorKommentar != "-")
+                    if (row.Autorkommentar != "-")
                     {
                         var table = doc.AddTable(1, 1);
-                        table.Rows[0].Cells[0].Paragraphs.First().Append(autorKommentar);
+                        table.Rows[0].Cells[0].Paragraphs.First().Append(row.Autorkommentar);
                         table.AutoFit = AutoFit.Window;
                         doc.InsertTable(table);
                     }
-                    if (rezept != "-")
+                    if (row.Rezept != "-")
                     {
+                        var rezept = row.Rezept;
                         rezept = rezept.Replace("<br/>", " ");
                         var table = doc.AddTable(1, 1);
                         table.Rows[0].Cells[0].Paragraphs.First().Append(rezept);
                         table.AutoFit = AutoFit.Window;
                         doc.InsertTable(table);
                     }
-                    if (interferenz != "-")
+                    if (row.Interferenz != "-")
                     {
                         var table = doc.AddTable(1, 1);
-                        table.Rows[0].Cells[0].Paragraphs.First().Append(interferenz);
+                        table.Rows[0].Cells[0].Paragraphs.First().Append(row.Interferenz);
                         table.AutoFit = AutoFit.Window;
                         doc.InsertTable(table);
                     }
                 }
                 // Phrasen anreichern
-                SQLiteParameter ofrsprep = new SQLiteParameter("@ofrs");
-                string sqlCom2 = "SELECT * FROM WB WHERE Wortart = 'Phrase' AND Zuordnung = @ofrs";
-                SQLiteCommand scdCommand2 = new SQLiteCommand(sqlCom2, connection);
-                if (index == "-")
-                {
-                    ofrsprep.Value = ostfriesisch;
-                }
-                else
-                {
-                    ofrsprep.Value = ostfriesisch + "=" + index;
-                }
-                scdCommand2.Parameters.Add(ofrsprep);
-                scdCommand2.Prepare();
-                SQLiteDataReader reader2 = scdCommand2.ExecuteReader();
-                while (reader2.Read())
+                string zuordnung = row.Index == "-" ? row.Ostfriesisch : row.Ostfriesisch + "=" + row.Index;
+                var phrasen = wfdot._WFDOT.Where(x => x.Wortart == "Phrase" && x.Zuordnung == zuordnung).ToList();
+                foreach (var row2 in phrasen)
                 {
                     var phraseParagraph = doc.InsertParagraph("", false, textFormat);
-                    var ostfriesischPhrase = (string)reader2["Ostfriesisch"];
-                    var deutschPhrase = (string)reader2["Deutsch"];
-                    phraseParagraph.InsertText(ostfriesischPhrase, false, textFormat);
+                    phraseParagraph.InsertText(row2.Ostfriesisch, false, textFormat);
                     phraseParagraph.InsertText(" ", false, textFormat);
-                    phraseParagraph.InsertText(deutschPhrase, false, textFormatItalic);
+                    phraseParagraph.InsertText(row2.Deutsch, false, textFormatItalic);
                 }
-                reader2.Close();
             }
-            reader.Close();
+
+            doc.Save();
 
             //Phrasen ohne Zuordnung
+            var fileOhneZuordnung = $@"{path}\outOhneZu.docx";
+            files.Add(fileOhneZuordnung);
+            doc = DocX.Create(fileOhneZuordnung);
             doc.InsertParagraph(Environment.NewLine, false, textFormat);
             doc.InsertParagraph("Unzugeordnete Phrasen:", false, wordFormat);
             doc.InsertParagraph(Environment.NewLine, false, textFormat);
-            string sqlCom3 = "SELECT * FROM WB WHERE Wortart = 'Phrase' AND Zuordnung = '-'";
-            SQLiteCommand scdCommand3 = new SQLiteCommand(sqlCom3, connection);
-            scdCommand3.Prepare();
-            SQLiteDataReader reader3 = scdCommand3.ExecuteReader();
-            while (reader3.Read())
+            var ohneZuordnung = wfdot._WFDOT.Where(x => x.Wortart == "Phrase" && x.Zuordnung == "-").ToList();
+            foreach (var row3 in ohneZuordnung)
             {
                 var phraseParagraph = doc.InsertParagraph("", false, textFormat);
-                var ostfriesischPhrase = (string)reader3["Ostfriesisch"];
-                var deutschPhrase = (string)reader3["Deutsch"];
-                phraseParagraph.InsertText(ostfriesischPhrase, false, textFormat);
+                phraseParagraph.InsertText(row3.Ostfriesisch, false, textFormat);
                 phraseParagraph.InsertText(" ", false, textFormat);
-                phraseParagraph.InsertText(deutschPhrase, false, textFormatItalic);
+                phraseParagraph.InsertText(row3.Deutsch, false, textFormatItalic);
             }
-            reader3.Close();
 
-            connection.Close();
             doc.Save();
+
+            var fullDoc = DocX.Create($@"{path}\full.docx");
+            foreach (var document in files)
+            {
+                var partDoc = DocX.Load(document);
+                fullDoc.InsertDocument(partDoc, true);
+            }
+            fullDoc.Save();
         }
     }
 }
