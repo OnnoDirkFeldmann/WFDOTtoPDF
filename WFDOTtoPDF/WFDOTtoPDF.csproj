@@ -25,8 +25,20 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="WFDOT.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>WFDOT.xsd</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="WFDOT.db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="WFDOT.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>WFDOT.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
 
