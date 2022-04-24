@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "+gyQjrQ2CWP/N8JpnXfxqbDqjvXOMtmvwcbKoAfPqAZyjU2IiMhd1QYexwX4K1Yz0mSIkSg5W/aW/iGGYu75DA==",
+  "dgSpecHash": "flzrAceT/16MdxqbZVwpH4KHElQfCw+HVLXWw0ZIaT0XCQYeYt2Hcwi7UM34/LV2sKAFXWeeTWIGEvwIp2wRWA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Neronno\\source\\repos\\WFDOTtoPDF\\WFDOTtoPDF\\WFDOTtoPDF.csproj",
   "expectedPackageFiles": [
@@ -71,8 +71,7 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.threading.tasks.extensions\\4.0.0\\system.threading.tasks.extensions.4.0.0.nupkg.sha512",
     "C:\\Users\\Neronno\\.nuget\\packages\\system.windows.extensions\\4.6.0\\system.windows.extensions.4.6.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.readerwriter\\4.0.11\\system.xml.readerwriter.4.0.11.nupkg.sha512",
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.xdocument\\4.0.11\\system.xml.xdocument.4.0.11.nupkg.sha512",
-    "C:\\Users\\Neronno\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.14\\microsoft.netcore.app.host.win-x64.5.0.14.nupkg.sha512"
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.xdocument\\4.0.11\\system.xml.xdocument.4.0.11.nupkg.sha512"
   ],
   "logs": []
 }

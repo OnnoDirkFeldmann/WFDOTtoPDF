@@ -587,6 +587,13 @@ namespace WFDOTtoPDF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public WFDOTRow FindByID(long ID) {
+                return ((WFDOTRow)(this.Rows.Find(new object[] {
+                            ID})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public override global::System.Data.DataTable Clone() {
                 WFDOTDataTable cln = ((WFDOTDataTable)(base.Clone()));
                 cln.InitVars();
@@ -664,6 +671,10 @@ namespace WFDOTtoPDF {
                 base.Columns.Add(this.columnInterferenz);
                 this.columnEnglisch = new global::System.Data.DataColumn("Englisch", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnEnglisch);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnID}, true));
+                this.columnID.AllowDBNull = false;
+                this.columnID.Unique = true;
                 this.ExtendedProperties.Add("Generator_TablePropName", "_WFDOT");
                 this.ExtendedProperties.Add("Generator_UserTableName", "WFDOT");
             }
@@ -810,12 +821,7 @@ namespace WFDOTtoPDF {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public long ID {
                 get {
-                    try {
-                        return ((long)(this[this.tableWFDOT.IDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("Der Wert für Spalte ID in Tabelle WFDOT ist DBNull.", e);
-                    }
+                    return ((long)(this[this.tableWFDOT.IDColumn]));
                 }
                 set {
                     this[this.tableWFDOT.IDColumn] = value;
@@ -1108,18 +1114,6 @@ namespace WFDOTtoPDF {
                 set {
                     this[this.tableWFDOT.EnglischColumn] = value;
                 }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsIDNull() {
-                return this.IsNull(this.tableWFDOT.IDColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetIDNull() {
-                this[this.tableWFDOT.IDColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
