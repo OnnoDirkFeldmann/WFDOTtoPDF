@@ -256,7 +256,7 @@ namespace WFDOTtoPDF
                     }
                 }
                 // Phrasen anreichern
-                string zuordnung = row.Index == "-" ? row.Ostfriesisch : row.Ostfriesisch + "=" + row.Index;
+                string zuordnung = row.Nummer == "-" ? row.Ostfriesisch : row.Ostfriesisch + "=" + row.Nummer;
                 var phrasen = wfdot._WFDOT.Where(x => x.Wortart == "Phrase" && x.Zuordnung == zuordnung).ToList();
                 foreach (var row2 in phrasen)
                 {

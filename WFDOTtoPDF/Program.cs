@@ -10,7 +10,7 @@ namespace WFDOTtoPDF
         {
             Console.OutputEncoding = Encoding.UTF8;
             string line;
-            Console.WriteLine("1=html 2=html (full) 3=docx 4=docx (full) 5=dic 6=Tools 7=? 8=Falsche Zuordnungen");
+            Console.WriteLine("1=html 2=html (full) 3=docx 4=docx (full) 5=dic 6=Duplikate ohne Index 7=Falsche Zuordnungen");
             line = Console.ReadLine();
             switch (line)
             {
@@ -39,9 +39,6 @@ namespace WFDOTtoPDF
                     WFDOTChecker.DublicatesWithoutIndex();
                     break;
                 case "7":
-                    ExcelToWFDOT.ExcelToSqlite(@"C:\Users\Neronno\Desktop\convert\export.xlsm", @"C:\Users\Neronno\Desktop\convert\export.db");
-                    break;
-                case "8":
                     WFDOTChecker.ShowWrongReference();
                     break;
             }

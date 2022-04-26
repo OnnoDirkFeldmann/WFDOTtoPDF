@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
+using System.Linq;
 
 namespace WFDOTtoPDF
 {
@@ -28,7 +29,7 @@ namespace WFDOTtoPDF
                 ofrsprep.Value = splitted[0];
                 if (splitted.Length == 2)
                 {
-                    sqlCom2 = "SELECT COUNT(*) FROM WB WHERE Ostfriesisch = @ofrs AND \"Index\" = @index";
+                    sqlCom2 = "SELECT COUNT(*) FROM WB WHERE Ostfriesisch = @ofrs AND Nummer = @index";
                     index.Value = splitted[1];
                 }
                 SQLiteCommand scdCommand2 = new SQLiteCommand(sqlCom2, connection);
@@ -57,18 +58,22 @@ namespace WFDOTtoPDF
             SQLiteConnection connection = new SQLiteConnection();
             connection.ConnectionString = @"Data Source=C:\Users\Neronno\source\repos\WFDOTtoPDF\WFDOTtoPDF\WFDOT.db";
             connection.Open();
-            string sqlCom = "SELECT * FROM WB WHERE INDEX = '-'";
+            string sqlCom = "SELECT * FROM WB WHERE Nummer = '-'";
             SQLiteCommand scdCommand = new SQLiteCommand(sqlCom, connection);
             SQLiteDataReader reader = scdCommand.ExecuteReader();
-            var wordList = new List<string[]>();
-            while (reader.Read())
-            {
-                wordList.Add(new string[] { (string)reader["Ostfriesisch"], (string)reader["Index"] });
-            }
-
-            Console.Read();
+            WFDOT wfdot = new WFDOT();
+            wfdot._WFDOT.Load(reader);
             reader.Close();
             connection.Close();
+
+            var duplicatesWithoutIndex = wfdot._WFDOT.GroupBy(x => x.Ostfriesisch).Where(g => g.Count() > 1).Select(y => y.Key).ToList();
+            foreach (var duplicate in duplicatesWithoutIndex)
+            {
+                Console.WriteLine(duplicate);
+            }
+
+            Console.WriteLine("---Done!");
+            Console.Read();
         }
     }
 }
