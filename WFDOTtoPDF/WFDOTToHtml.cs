@@ -19,7 +19,7 @@ namespace WFDOTtoPDF
             string ostfriesisch;
             string standardform;
             string konjugation;
-            string index;
+            string nummer;
             string deutsch;
             string artikel;
             string plural;
@@ -36,7 +36,7 @@ namespace WFDOTtoPDF
             writestring = "";
             List<string> list = new List<string>();
             List<string> ostfriesischewoerter = new List<string>();
-            List<string> indexewoerter = new List<string>();
+            List<string> nummerwoerter = new List<string>();
             List<string> list2 = new List<string>();
             while (reader.Read())
             {
@@ -218,8 +218,8 @@ namespace WFDOTtoPDF
                     }
                 }
 
-                index = (string)reader["Index"];
-                indexewoerter.Add(index);
+                nummer = (string)reader["Index"];
+                nummerwoerter.Add(nummer);
                 list.Add(temp);
             }
             reader.Close();
@@ -231,13 +231,13 @@ namespace WFDOTtoPDF
                 SQLiteParameter ofrsprep = new SQLiteParameter("@ofrs");
                 string sqlCom2 = "SELECT * FROM WB WHERE Wortart = 'Phrase' AND Zuordnung = @ofrs";
                 SQLiteCommand scdCommand2 = new SQLiteCommand(sqlCom2, connection);
-                if (indexewoerter[i] == "-")
+                if (nummerwoerter[i] == "-")
                 {
                     ofrsprep.Value = ostfriesischewoerter[i];
                 }
                 else
                 {
-                    ofrsprep.Value = ostfriesischewoerter[i] + "=" + indexewoerter[i];
+                    ofrsprep.Value = ostfriesischewoerter[i] + "=" + nummerwoerter[i];
                 }
                 scdCommand2.Parameters.Add(ofrsprep);
                 scdCommand2.Prepare();

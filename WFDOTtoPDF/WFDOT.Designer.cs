@@ -303,7 +303,7 @@ namespace WFDOTtoPDF {
             
             private global::System.Data.DataColumn columnZuordnung;
             
-            private global::System.Data.DataColumn columnIndex;
+            private global::System.Data.DataColumn columnNummer;
             
             private global::System.Data.DataColumn columnEtymologie;
             
@@ -448,9 +448,9 @@ namespace WFDOTtoPDF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn IndexColumn {
+            public global::System.Data.DataColumn NummerColumn {
                 get {
-                    return this.columnIndex;
+                    return this.columnNummer;
                 }
             }
             
@@ -552,7 +552,7 @@ namespace WFDOTtoPDF {
                         string Nebenformen, 
                         string Standardform, 
                         string Zuordnung, 
-                        string Index, 
+                        string Nummer, 
                         string Etymologie, 
                         string Kommentar, 
                         string Autorkommentar, 
@@ -573,7 +573,7 @@ namespace WFDOTtoPDF {
                         Nebenformen,
                         Standardform,
                         Zuordnung,
-                        Index,
+                        Nummer,
                         Etymologie,
                         Kommentar,
                         Autorkommentar,
@@ -621,7 +621,7 @@ namespace WFDOTtoPDF {
                 this.columnNebenformen = base.Columns["Nebenformen"];
                 this.columnStandardform = base.Columns["Standardform"];
                 this.columnZuordnung = base.Columns["Zuordnung"];
-                this.columnIndex = base.Columns["Index"];
+                this.columnNummer = base.Columns["Nummer"];
                 this.columnEtymologie = base.Columns["Etymologie"];
                 this.columnKommentar = base.Columns["Kommentar"];
                 this.columnAutorkommentar = base.Columns["Autorkommentar"];
@@ -657,8 +657,8 @@ namespace WFDOTtoPDF {
                 base.Columns.Add(this.columnStandardform);
                 this.columnZuordnung = new global::System.Data.DataColumn("Zuordnung", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnZuordnung);
-                this.columnIndex = new global::System.Data.DataColumn("Index", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnIndex);
+                this.columnNummer = new global::System.Data.DataColumn("Nummer", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNummer);
                 this.columnEtymologie = new global::System.Data.DataColumn("Etymologie", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnEtymologie);
                 this.columnKommentar = new global::System.Data.DataColumn("Kommentar", typeof(string), null, global::System.Data.MappingType.Element);
@@ -1006,17 +1006,17 @@ namespace WFDOTtoPDF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string Index {
+            public string Nummer {
                 get {
                     try {
-                        return ((string)(this[this.tableWFDOT.IndexColumn]));
+                        return ((string)(this[this.tableWFDOT.NummerColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("Der Wert für Spalte Index in Tabelle WFDOT ist DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("Der Wert für Spalte Nummer in Tabelle WFDOT ist DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableWFDOT.IndexColumn] = value;
+                    this[this.tableWFDOT.NummerColumn] = value;
                 }
             }
             
@@ -1250,14 +1250,14 @@ namespace WFDOTtoPDF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsIndexNull() {
-                return this.IsNull(this.tableWFDOT.IndexColumn);
+            public bool IsNummerNull() {
+                return this.IsNull(this.tableWFDOT.NummerColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetIndexNull() {
-                this[this.tableWFDOT.IndexColumn] = global::System.Convert.DBNull;
+            public void SetNummerNull() {
+                this[this.tableWFDOT.NummerColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
