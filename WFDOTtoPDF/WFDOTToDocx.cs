@@ -28,20 +28,20 @@ namespace WFDOTtoPDF
 
             var wordFormat = new Formatting();
             wordFormat.FontFamily = new Font("Verdana");
-            wordFormat.Size = 12D;
+            wordFormat.Size = 9D;
 
             var wordFormatBold = new Formatting();
             wordFormatBold.FontFamily = new Font("Verdana");
-            wordFormatBold.Size = 12D;
+            wordFormatBold.Size = 9D;
             wordFormatBold.Bold = true;
 
             var textFormat = new Formatting();
             textFormat.FontFamily = new Font("Verdana");
-            textFormat.Size = 11D;
+            textFormat.Size = 8D;
 
             var textFormatItalic = new Formatting();
             textFormatItalic.FontFamily = new Font("Verdana");
-            textFormatItalic.Size = 11D;
+            textFormatItalic.Size = 8D;
             textFormatItalic.Italic = true;
 
             //Ostfriesische Begriffe holen
@@ -210,7 +210,7 @@ namespace WFDOTtoPDF
                         komparation = komparation.Substring(0, komparation.Length - 5);
                         komparation = komparation.Replace("<br/>", "; ");
                         var table = doc.AddTable(1, 1);
-                        table.Rows[0].Cells[0].Paragraphs.First().Append(komparation);
+                        table.Rows[0].Cells[0].Paragraphs.First().InsertText(komparation, false, textFormat);
                         table.AutoFit = AutoFit.Window;
                         doc.InsertTable(table);
                     }
@@ -220,21 +220,21 @@ namespace WFDOTtoPDF
                         konjugation = konjugation.Substring(0, konjugation.Length - 5);
                         konjugation = konjugation.Replace("<br/>", "; ");
                         var table = doc.AddTable(1, 1);
-                        table.Rows[0].Cells[0].Paragraphs.First().Append(konjugation);
+                        table.Rows[0].Cells[0].Paragraphs.First().InsertText(konjugation, false, textFormat);
                         table.AutoFit = AutoFit.Window;
                         doc.InsertTable(table);
                     }
                     if (row.Kommentar != "-")
                     {
                         var table = doc.AddTable(1, 1);
-                        table.Rows[0].Cells[0].Paragraphs.First().Append(row.Kommentar);
+                        table.Rows[0].Cells[0].Paragraphs.First().InsertText(row.Kommentar, false, textFormat);
                         table.AutoFit = AutoFit.Window;
                         doc.InsertTable(table);
                     }
                     if (row.Autorkommentar != "-")
                     {
                         var table = doc.AddTable(1, 1);
-                        table.Rows[0].Cells[0].Paragraphs.First().Append(row.Autorkommentar);
+                        table.Rows[0].Cells[0].Paragraphs.First().InsertText(row.Autorkommentar, false, textFormat);
                         table.AutoFit = AutoFit.Window;
                         doc.InsertTable(table);
                     }
@@ -243,14 +243,14 @@ namespace WFDOTtoPDF
                         var rezept = row.Rezept;
                         rezept = rezept.Replace("<br/>", " ");
                         var table = doc.AddTable(1, 1);
-                        table.Rows[0].Cells[0].Paragraphs.First().Append(rezept);
+                        table.Rows[0].Cells[0].Paragraphs.First().InsertText(rezept, false, textFormat);
                         table.AutoFit = AutoFit.Window;
                         doc.InsertTable(table);
                     }
                     if (row.Interferenz != "-")
                     {
                         var table = doc.AddTable(1, 1);
-                        table.Rows[0].Cells[0].Paragraphs.First().Append(row.Interferenz);
+                        table.Rows[0].Cells[0].Paragraphs.First().InsertText(row.Interferenz, false, textFormat);
                         table.AutoFit = AutoFit.Window;
                         doc.InsertTable(table);
                     }
