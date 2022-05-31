@@ -41,6 +41,7 @@ namespace WFDOTtoPDF
                 case "7":
                     WFDOTChecker.ShowWrongReference();
                     break;
+                   
             }
         }
     }
