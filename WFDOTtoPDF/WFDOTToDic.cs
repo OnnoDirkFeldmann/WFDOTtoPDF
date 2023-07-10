@@ -35,6 +35,7 @@ namespace WFDOTtoPDF
                     plural = plural.Replace(",", " ");
                     plural = plural.Replace("\n", " ");
                     plural = plural.Replace("\r", " ");
+                    plural = plural.Replace("\\(.*\\)", " ");
                     dicw.AddRange(plural.Split(" "));
                 }
                 string komparation;
@@ -53,6 +54,7 @@ namespace WFDOTtoPDF
                     komparation = komparation.Replace("/", " ");
                     komparation = komparation.Replace("\n", " ");
                     komparation = komparation.Replace("\r", " ");
+                    komparation = komparation.Replace("\\(.*\\)", " ");
                     dicw.AddRange(komparation.Split(" "));
                 }
                 string konjugation;
@@ -72,6 +74,7 @@ namespace WFDOTtoPDF
                     konjugation = konjugation.Replace("/", " ");
                     konjugation = konjugation.Replace("\n", " ");
                     konjugation = konjugation.Replace("\r", " ");
+                    konjugation = konjugation.Replace("\\(.*\\)", " ");
                     dicw.AddRange(konjugation.Split(" "));
                 }
             }
