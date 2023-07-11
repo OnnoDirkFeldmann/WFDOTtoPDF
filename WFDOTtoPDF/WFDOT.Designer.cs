@@ -313,8 +313,6 @@ namespace WFDOTtoPDF {
             
             private global::System.Data.DataColumn columnRezept;
             
-            private global::System.Data.DataColumn columnInterferenz;
-            
             private global::System.Data.DataColumn columnEnglisch;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -488,14 +486,6 @@ namespace WFDOTtoPDF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn InterferenzColumn {
-                get {
-                    return this.columnInterferenz;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public global::System.Data.DataColumn EnglischColumn {
                 get {
                     return this.columnEnglisch;
@@ -557,7 +547,6 @@ namespace WFDOTtoPDF {
                         string Kommentar, 
                         string Autorkommentar, 
                         string Rezept, 
-                        string Interferenz, 
                         string Englisch) {
                 WFDOTRow rowWFDOTRow = ((WFDOTRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
@@ -578,7 +567,6 @@ namespace WFDOTtoPDF {
                         Kommentar,
                         Autorkommentar,
                         Rezept,
-                        Interferenz,
                         Englisch};
                 rowWFDOTRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowWFDOTRow);
@@ -626,7 +614,6 @@ namespace WFDOTtoPDF {
                 this.columnKommentar = base.Columns["Kommentar"];
                 this.columnAutorkommentar = base.Columns["Autorkommentar"];
                 this.columnRezept = base.Columns["Rezept"];
-                this.columnInterferenz = base.Columns["Interferenz"];
                 this.columnEnglisch = base.Columns["Englisch"];
             }
             
@@ -667,8 +654,6 @@ namespace WFDOTtoPDF {
                 base.Columns.Add(this.columnAutorkommentar);
                 this.columnRezept = new global::System.Data.DataColumn("Rezept", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRezept);
-                this.columnInterferenz = new global::System.Data.DataColumn("Interferenz", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnInterferenz);
                 this.columnEnglisch = new global::System.Data.DataColumn("Englisch", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnEnglisch);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
@@ -1086,22 +1071,6 @@ namespace WFDOTtoPDF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string Interferenz {
-                get {
-                    try {
-                        return ((string)(this[this.tableWFDOT.InterferenzColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("Der Wert für Spalte Interferenz in Tabelle WFDOT ist DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableWFDOT.InterferenzColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string Englisch {
                 get {
                     try {
@@ -1306,18 +1275,6 @@ namespace WFDOTtoPDF {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetRezeptNull() {
                 this[this.tableWFDOT.RezeptColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsInterferenzNull() {
-                return this.IsNull(this.tableWFDOT.InterferenzColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetInterferenzNull() {
-                this[this.tableWFDOT.InterferenzColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
