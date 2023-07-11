@@ -247,13 +247,6 @@ namespace WFDOTtoPDF
                         table.AutoFit = AutoFit.Window;
                         doc.InsertTable(table);
                     }
-                    if (row.Interferenz != "-")
-                    {
-                        var table = doc.AddTable(1, 1);
-                        table.Rows[0].Cells[0].Paragraphs.First().InsertText(row.Interferenz, false, textFormat);
-                        table.AutoFit = AutoFit.Window;
-                        doc.InsertTable(table);
-                    }
                 }
                 // Phrasen anreichern
                 string zuordnung = row.Nummer == "-" ? row.Ostfriesisch : row.Ostfriesisch + "=" + row.Nummer;
