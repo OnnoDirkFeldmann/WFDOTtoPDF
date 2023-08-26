@@ -23,7 +23,6 @@ namespace WFDOTtoPDF
                     string htmlFull;
                     htmlFull = WFDOTToHtml.Tohtml(true);
                     File.WriteAllText(@"C:\Users\Neronno\Desktop\outfull.html", htmlFull);
-
                     break;
                 case "3":
                     WFDOTToDocx.ToDocx(false, @"C:\Users\Neronno\Desktop\gen", false);
