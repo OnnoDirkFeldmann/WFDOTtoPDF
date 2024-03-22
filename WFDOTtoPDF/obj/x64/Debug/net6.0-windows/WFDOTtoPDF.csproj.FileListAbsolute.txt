@@ -30,9 +30,9 @@ C:\Users\Neronno\source\repos\WFDOTtoPDF\WFDOTtoPDF\obj\x64\Debug\net6.0-windows
 C:\Users\Neronno\source\repos\WFDOTtoPDF\WFDOTtoPDF\obj\x64\Debug\net6.0-windows\WFDOTtoPDF.AssemblyInfoInputs.cache
 C:\Users\Neronno\source\repos\WFDOTtoPDF\WFDOTtoPDF\obj\x64\Debug\net6.0-windows\WFDOTtoPDF.AssemblyInfo.cs
 C:\Users\Neronno\source\repos\WFDOTtoPDF\WFDOTtoPDF\obj\x64\Debug\net6.0-windows\WFDOTtoPDF.csproj.CoreCompileInputs.cache
-C:\Users\Neronno\source\repos\WFDOTtoPDF\WFDOTtoPDF\obj\x64\Debug\net6.0-windows\WFDOTtoPDF.csproj.CopyComplete
 C:\Users\Neronno\source\repos\WFDOTtoPDF\WFDOTtoPDF\obj\x64\Debug\net6.0-windows\WFDOTtoPDF.dll
 C:\Users\Neronno\source\repos\WFDOTtoPDF\WFDOTtoPDF\obj\x64\Debug\net6.0-windows\refint\WFDOTtoPDF.dll
 C:\Users\Neronno\source\repos\WFDOTtoPDF\WFDOTtoPDF\obj\x64\Debug\net6.0-windows\WFDOTtoPDF.pdb
 C:\Users\Neronno\source\repos\WFDOTtoPDF\WFDOTtoPDF\obj\x64\Debug\net6.0-windows\WFDOTtoPDF.genruntimeconfig.cache
 C:\Users\Neronno\source\repos\WFDOTtoPDF\WFDOTtoPDF\obj\x64\Debug\net6.0-windows\ref\WFDOTtoPDF.dll
+C:\Users\Neronno\source\repos\WFDOTtoPDF\WFDOTtoPDF\obj\x64\Debug\net6.0-windows\WFDOTtoPDF.csproj.Up2Date
