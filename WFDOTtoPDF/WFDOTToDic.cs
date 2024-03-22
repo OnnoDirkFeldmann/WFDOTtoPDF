@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace WFDOTtoPDF
 {
@@ -32,16 +33,17 @@ namespace WFDOTtoPDF
                 plural = (string)reader["Plural"];
                 if (!plural.Equals("-"))
                 {
+                    plural = Regex.Replace(plural, "\\((.+?)\\)", "");
                     plural = plural.Replace(",", " ");
                     plural = plural.Replace("\n", " ");
                     plural = plural.Replace("\r", " ");
-                    plural = plural.Replace("\\(.*\\)", " ");
                     dicw.AddRange(plural.Split(" "));
                 }
                 string komparation;
                 komparation = (string)reader["Komparation"];
                 if (!komparation.Equals("-"))
                 {
+                    komparation = Regex.Replace(komparation, "\\((.+?)\\)", "");
                     komparation = komparation.Replace("stark<br/>Positiv: ", " ");
                     komparation = komparation.Replace("schwach<br/>Positiv: ", " ");
                     komparation = komparation.Replace("<br/>Komparativ (prädikativ): ", " ");
@@ -54,13 +56,14 @@ namespace WFDOTtoPDF
                     komparation = komparation.Replace("/", " ");
                     komparation = komparation.Replace("\n", " ");
                     komparation = komparation.Replace("\r", " ");
-                    komparation = komparation.Replace("\\(.*\\)", " ");
+                   
                     dicw.AddRange(komparation.Split(" "));
                 }
                 string konjugation;
                 konjugation = (string)reader["Konjugation"];
                 if (!konjugation.Equals("-"))
                 {
+                    konjugation = Regex.Replace(konjugation, "\\((.+?)\\)", "");
                     konjugation = konjugation.Replace("stark<br/>Inf.: ", " ");
                     konjugation = konjugation.Replace("schwach<br/>Inf.: ", " ");
                     konjugation = konjugation.Replace("stark (Praet.-Praes.)<br/>Inf.: ", " ");
@@ -74,7 +77,6 @@ namespace WFDOTtoPDF
                     konjugation = konjugation.Replace("/", " ");
                     konjugation = konjugation.Replace("\n", " ");
                     konjugation = konjugation.Replace("\r", " ");
-                    konjugation = konjugation.Replace("\\(.*\\)", " ");
                     dicw.AddRange(konjugation.Split(" "));
                 }
             }

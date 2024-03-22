@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WFDOTtoPDF")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+82eed7170d8acb4748d5a68b0c89b84525bd4a5d")]
 [assembly: System.Reflection.AssemblyProductAttribute("WFDOTtoPDF")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WFDOTtoPDF")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
