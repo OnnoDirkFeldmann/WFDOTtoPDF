@@ -3,18 +3,6 @@
   "WorkspaceRootPath": "C:\\Users\\Neronno\\source\\repos\\WFDOTtoPDF\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CA1034F2-FE34-451C-B9D3-9FEA94047C55}|WFDOTtoPDF\\WFDOTtoPDF.csproj|c:\\users\\neronno\\source\\repos\\wfdottopdf\\wfdottopdf\\wfdottodic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA1034F2-FE34-451C-B9D3-9FEA94047C55}|WFDOTtoPDF\\WFDOTtoPDF.csproj|solutionrelative:wfdottopdf\\wfdottodic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA1034F2-FE34-451C-B9D3-9FEA94047C55}|WFDOTtoPDF\\WFDOTtoPDF.csproj|C:\\Users\\Neronno\\source\\repos\\WFDOTtoPDF\\wfdottopdf\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA1034F2-FE34-451C-B9D3-9FEA94047C55}|WFDOTtoPDF\\WFDOTtoPDF.csproj|solutionrelative:wfdottopdf\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA1034F2-FE34-451C-B9D3-9FEA94047C55}|WFDOTtoPDF\\WFDOTtoPDF.csproj|c:\\users\\neronno\\source\\repos\\wfdottopdf\\wfdottopdf\\wfdotchecker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA1034F2-FE34-451C-B9D3-9FEA94047C55}|WFDOTtoPDF\\WFDOTtoPDF.csproj|solutionrelative:wfdottopdf\\wfdotchecker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{CA1034F2-FE34-451C-B9D3-9FEA94047C55}|WFDOTtoPDF\\WFDOTtoPDF.csproj|C:\\Users\\Neronno\\source\\repos\\WFDOTtoPDF\\wfdottopdf\\wfdottodocx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CA1034F2-FE34-451C-B9D3-9FEA94047C55}|WFDOTtoPDF\\WFDOTtoPDF.csproj|solutionrelative:wfdottopdf\\wfdottodocx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -43,53 +31,15 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "WFDOTToDic.cs",
-              "DocumentMoniker": "C:\\Users\\Neronno\\source\\repos\\WFDOTtoPDF\\WFDOTtoPDF\\WFDOTToDic.cs",
-              "RelativeDocumentMoniker": "WFDOTtoPDF\\WFDOTToDic.cs",
-              "ToolTip": "C:\\Users\\Neronno\\source\\repos\\WFDOTtoPDF\\WFDOTtoPDF\\WFDOTToDic.cs",
-              "RelativeToolTip": "WFDOTtoPDF\\WFDOTToDic.cs",
-              "ViewState": "AQIAACMAAAAAAAAAAAAgwEUAAABJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-22T08:22:53.376Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "WFDOTChecker.cs",
-              "DocumentMoniker": "C:\\Users\\Neronno\\source\\repos\\WFDOTtoPDF\\WFDOTtoPDF\\WFDOTChecker.cs",
-              "RelativeDocumentMoniker": "WFDOTtoPDF\\WFDOTChecker.cs",
-              "ToolTip": "C:\\Users\\Neronno\\source\\repos\\WFDOTtoPDF\\WFDOTtoPDF\\WFDOTChecker.cs",
-              "RelativeToolTip": "WFDOTtoPDF\\WFDOTChecker.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB0AAAApAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2023-11-01T12:32:17.606Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Neronno\\source\\repos\\WFDOTtoPDF\\WFDOTtoPDF\\Program.cs",
-              "RelativeDocumentMoniker": "WFDOTtoPDF\\Program.cs",
-              "ToolTip": "C:\\Users\\Neronno\\source\\repos\\WFDOTtoPDF\\WFDOTtoPDF\\Program.cs",
-              "RelativeToolTip": "WFDOTtoPDF\\Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACIAAAAnAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2023-08-26T11:28:45.462Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "WFDOTToDocx.cs",
               "DocumentMoniker": "C:\\Users\\Neronno\\source\\repos\\WFDOTtoPDF\\WFDOTtoPDF\\WFDOTToDocx.cs",
               "RelativeDocumentMoniker": "WFDOTtoPDF\\WFDOTToDocx.cs",
               "ToolTip": "C:\\Users\\Neronno\\source\\repos\\WFDOTtoPDF\\WFDOTtoPDF\\WFDOTToDocx.cs",
               "RelativeToolTip": "WFDOTtoPDF\\WFDOTToDocx.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAABBAAAA",
+              "ViewState": "AQIAAKgAAAAAAAAAAAAkwMQAAABYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2023-08-26T11:28:33.277Z"
+              "WhenOpened": "2023-08-26T11:28:33.277Z",
+              "EditorCaption": ""
             }
           ]
         }
