@@ -36,3 +36,4 @@ C:\Users\Neronno\source\repos\WFDOTtoPDF\WFDOTtoPDF\obj\x64\Debug\net6.0-windows
 C:\Users\Neronno\source\repos\WFDOTtoPDF\WFDOTtoPDF\obj\x64\Debug\net6.0-windows\WFDOTtoPDF.genruntimeconfig.cache
 C:\Users\Neronno\source\repos\WFDOTtoPDF\WFDOTtoPDF\obj\x64\Debug\net6.0-windows\ref\WFDOTtoPDF.dll
 C:\Users\Neronno\source\repos\WFDOTtoPDF\WFDOTtoPDF\obj\x64\Debug\net6.0-windows\WFDOTtoPDF.csproj.Up2Date
+C:\Users\Neronno\source\repos\WFDOTtoPDF\WFDOTtoPDF\obj\x64\Debug\net6.0-windows\WFDOTtoPDF.sourcelink.json
