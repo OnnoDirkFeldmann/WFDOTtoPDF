@@ -10,7 +10,7 @@ namespace WFDOTtoPDF
         {
             Console.OutputEncoding = Encoding.UTF8;
             string line;
-            Console.WriteLine("1=html 2=html (full) 3=docx 4=docx (full) 5=dic 6=Duplikate ohne Index 7=Falsche Zuordnungen");
+            Console.WriteLine("1=html 2=html (full) 3=docx 4=docx-full testpage 5=docx-full 6=dic 7=counterpart without index 8=wrong assignments");
             line = Console.ReadLine();
             switch (line)
             {
@@ -28,17 +28,20 @@ namespace WFDOTtoPDF
                     WFDOTToDocx.ToDocx(false, @"C:\Users\Neronno\Desktop\gen", false);
                     break;
                 case "4":
-                    WFDOTToDocx.ToDocx(true, @"C:\Users\Neronno\Desktop\gen", false);
+                    WFDOTToDocx.ToDocx(true, @"C:\Users\Neronno\Desktop\gen", true);
                     break;
                 case "5":
+                    WFDOTToDocx.ToDocx(true, @"C:\Users\Neronno\Desktop\gen", false);
+                    break;
+                case "6":
                     string dic;
                     dic = WFDOTToDic.Todic();
                     File.WriteAllText(@"C:\Users\Neronno\Desktop\frs.dic", dic, Encoding.Unicode);
                     break;
-                case "6":
+                case "7":
                     WFDOTChecker.DublicatesWithoutIndex();
                     break;
-                case "7":
+                case "8":
                     WFDOTChecker.ShowWrongReference();
                     break;
             }
