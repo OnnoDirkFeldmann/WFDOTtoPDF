@@ -27,24 +27,24 @@ namespace WFDOTtoPDF
             connection.Close();
 
             var wordFormat = new Formatting();
-            wordFormat.FontFamily = new Font("Verdana");
+            wordFormat.FontFamily = new Font("Segoe UI");
             wordFormat.Size = 9D;
 
             var wordFormatBold = new Formatting();
-            wordFormatBold.FontFamily = new Font("Verdana");
+            wordFormatBold.FontFamily = new Font("Segoe UI");
             wordFormatBold.Size = 9D;
             wordFormatBold.Bold = true;
 
             var textFormat = new Formatting();
-            textFormat.FontFamily = new Font("Verdana");
+            textFormat.FontFamily = new Font("Segoe UI");
             textFormat.Size = 8D;
 
             var textFormatItalic = new Formatting();
-            textFormatItalic.FontFamily = new Font("Verdana");
+            textFormatItalic.FontFamily = new Font("Segoe UI");
             textFormatItalic.Size = 8D;
             textFormatItalic.Italic = true;
 
-            //Ostfriesische Begriffe holen
+            //Oostfräisk woorden hóólen
             var files = new List<string>();
             var i = 0;
             var docIndex = 0;
@@ -66,7 +66,6 @@ namespace WFDOTtoPDF
                 i++;
 
                 var paragraph = doc.InsertParagraph("", false, wordFormat);
-
 
                 paragraph.InsertText(row.Ostfriesisch, false, wordFormatBold);
 
@@ -262,7 +261,7 @@ namespace WFDOTtoPDF
 
             doc.Save();
 
-            //Phrasen ohne Zuordnung
+            //fróósen sünner tauörnen
             var fileOhneZuordnung = $@"{path}\outOhneZu.docx";
             files.Add(fileOhneZuordnung);
             doc = DocX.Create(fileOhneZuordnung);
