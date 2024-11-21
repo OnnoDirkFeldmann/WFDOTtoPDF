@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SQLite;
 using System.IO;
 using System.Linq;
+using System.Text;
 
 namespace WFDOTtoPDF
 {
@@ -34,6 +35,11 @@ namespace WFDOTtoPDF
             wordFormatBold.FontFamily = new Font("Segoe UI");
             wordFormatBold.Size = 9D;
             wordFormatBold.Bold = true;
+
+            var textFormatBold = new Formatting();
+            textFormatBold.FontFamily = new Font("Segoe UI");
+            textFormatBold.Size = 8D;
+            textFormatBold.Bold = true;
 
             var textFormat = new Formatting();
             textFormat.FontFamily = new Font("Segoe UI");
@@ -249,32 +255,40 @@ namespace WFDOTtoPDF
                 }
                 // Phrasen anreichern
                 string zuordnung = row.Nummer == "-" ? row.Ostfriesisch : row.Ostfriesisch + "=" + row.Nummer;
-                var phrasen = wfdot._WFDOT.Where(x => x.Wortart == "Phrase" && x.Zuordnung == zuordnung).ToList();
-                foreach (var row2 in phrasen)
+                var phrases = wfdot._WFDOT.Where(x => x.Wortart == "Phrase" && x.Zuordnung == zuordnung).ToList();
+                if (phrases.Any())
                 {
                     var phraseParagraph = doc.InsertParagraph("", false, textFormat);
-                    phraseParagraph.InsertText(row2.Ostfriesisch, false, textFormat);
-                    phraseParagraph.InsertText(" ", false, textFormat);
-                    phraseParagraph.InsertText(row2.Deutsch, false, textFormatItalic);
+                    for (int j = 0; j < phrases.Count; j++)
+                    {
+                        WFDOT.WFDOTRow row2 = phrases[j];
+                        phraseParagraph.InsertText(row2.Ostfriesisch, false, textFormatBold);
+                        phraseParagraph.InsertText(" ", false, textFormat);
+                        phraseParagraph.InsertText(row2.Deutsch, false, textFormatItalic);
+                        if (j != phrases.Count - 1) phraseParagraph.InsertText(" ", false, textFormat);
+                    }
                 }
             }
 
             doc.Save();
 
-            //fróósen sünner tauörnen
-            var fileOhneZuordnung = $@"{path}\outOhneZu.docx";
-            files.Add(fileOhneZuordnung);
-            doc = DocX.Create(fileOhneZuordnung);
-            doc.InsertParagraph(Environment.NewLine, false, textFormat);
-            doc.InsertParagraph("Unzugeordnete Phrasen:", false, wordFormat);
-            doc.InsertParagraph(Environment.NewLine, false, textFormat);
             var ohneZuordnung = wfdot._WFDOT.Where(x => x.Wortart == "Phrase" && x.Zuordnung == "-").ToList();
-            foreach (var row3 in ohneZuordnung)
+            if (ohneZuordnung.Any())
             {
-                var phraseParagraph = doc.InsertParagraph("", false, textFormat);
-                phraseParagraph.InsertText(row3.Ostfriesisch, false, textFormat);
-                phraseParagraph.InsertText(" ", false, textFormat);
-                phraseParagraph.InsertText(row3.Deutsch, false, textFormatItalic);
+                //fróósen sünner tauörnen
+                var fileOhneZuordnung = $@"{path}\outOhneZu.docx";
+                files.Add(fileOhneZuordnung);
+                doc = DocX.Create(fileOhneZuordnung);
+                doc.InsertParagraph(Environment.NewLine, false, textFormat);
+                doc.InsertParagraph("Unzugeordnete Phrasen:", false, wordFormat);
+                doc.InsertParagraph(Environment.NewLine, false, textFormat);
+                foreach (var row3 in ohneZuordnung)
+                {
+                    var phraseParagraph = doc.InsertParagraph("", false, textFormat);
+                    phraseParagraph.InsertText(row3.Ostfriesisch, false, textFormat);
+                    phraseParagraph.InsertText(" ", false, textFormat);
+                    phraseParagraph.InsertText(row3.Deutsch, false, textFormatItalic);
+                }
             }
 
             doc.Save();
