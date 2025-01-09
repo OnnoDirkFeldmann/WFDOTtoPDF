@@ -289,9 +289,8 @@ namespace WFDOTtoPDF
                     phraseParagraph.InsertText(" ", false, textFormat);
                     phraseParagraph.InsertText(row3.Deutsch, false, textFormatItalic);
                 }
+                doc.Save();
             }
-
-            doc.Save();
 
             var fullDoc = DocX.Create($@"{path}\full.docx");
             foreach (var document in files)
