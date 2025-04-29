@@ -236,13 +236,6 @@ namespace WFDOTtoPDF
                         table.AutoFit = AutoFit.Window;
                         doc.InsertTable(table);
                     }
-                    if (row.Autorkommentar != "-")
-                    {
-                        var table = doc.AddTable(1, 1);
-                        table.Rows[0].Cells[0].Paragraphs.First().InsertText(row.Autorkommentar, false, textFormat);
-                        table.AutoFit = AutoFit.Window;
-                        doc.InsertTable(table);
-                    }
                     if (row.Rezept != "-")
                     {
                         var rezept = row.Rezept;
