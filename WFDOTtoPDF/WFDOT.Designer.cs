@@ -309,8 +309,6 @@ namespace WFDOTtoPDF {
             
             private global::System.Data.DataColumn columnKommentar;
             
-            private global::System.Data.DataColumn columnAutorkommentar;
-            
             private global::System.Data.DataColumn columnRezept;
             
             private global::System.Data.DataColumn columnEnglisch;
@@ -470,14 +468,6 @@ namespace WFDOTtoPDF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn AutorkommentarColumn {
-                get {
-                    return this.columnAutorkommentar;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public global::System.Data.DataColumn RezeptColumn {
                 get {
                     return this.columnRezept;
@@ -545,7 +535,6 @@ namespace WFDOTtoPDF {
                         string Nummer, 
                         string Etymologie, 
                         string Kommentar, 
-                        string Autorkommentar, 
                         string Rezept, 
                         string Englisch) {
                 WFDOTRow rowWFDOTRow = ((WFDOTRow)(this.NewRow()));
@@ -565,7 +554,6 @@ namespace WFDOTtoPDF {
                         Nummer,
                         Etymologie,
                         Kommentar,
-                        Autorkommentar,
                         Rezept,
                         Englisch};
                 rowWFDOTRow.ItemArray = columnValuesArray;
@@ -612,7 +600,6 @@ namespace WFDOTtoPDF {
                 this.columnNummer = base.Columns["Nummer"];
                 this.columnEtymologie = base.Columns["Etymologie"];
                 this.columnKommentar = base.Columns["Kommentar"];
-                this.columnAutorkommentar = base.Columns["Autorkommentar"];
                 this.columnRezept = base.Columns["Rezept"];
                 this.columnEnglisch = base.Columns["Englisch"];
             }
@@ -650,8 +637,6 @@ namespace WFDOTtoPDF {
                 base.Columns.Add(this.columnEtymologie);
                 this.columnKommentar = new global::System.Data.DataColumn("Kommentar", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnKommentar);
-                this.columnAutorkommentar = new global::System.Data.DataColumn("Autorkommentar", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnAutorkommentar);
                 this.columnRezept = new global::System.Data.DataColumn("Rezept", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRezept);
                 this.columnEnglisch = new global::System.Data.DataColumn("Englisch", typeof(string), null, global::System.Data.MappingType.Element);
@@ -1039,22 +1024,6 @@ namespace WFDOTtoPDF {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string Autorkommentar {
-                get {
-                    try {
-                        return ((string)(this[this.tableWFDOT.AutorkommentarColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("Der Wert für Spalte Autorkommentar in Tabelle WFDOT ist DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableWFDOT.AutorkommentarColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string Rezept {
                 get {
                     try {
@@ -1251,18 +1220,6 @@ namespace WFDOTtoPDF {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetKommentarNull() {
                 this[this.tableWFDOT.KommentarColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsAutorkommentarNull() {
-                return this.IsNull(this.tableWFDOT.AutorkommentarColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetAutorkommentarNull() {
-                this[this.tableWFDOT.AutorkommentarColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
