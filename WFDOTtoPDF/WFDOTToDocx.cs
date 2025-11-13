@@ -16,7 +16,7 @@ namespace WFDOTtoPDF
             Directory.Delete(path, true);
             Directory.CreateDirectory(path);
             SQLiteConnection connection = new SQLiteConnection();
-            connection.ConnectionString = @"Data Source=C:\Users\Neronno\source\repos\WFDOTtoPDF\WFDOTtoPDF\WFDOT.db";
+            connection.ConnectionString = @"Data Source=D:\source\repos\WFDOTtoPDF\WFDOTtoPDF\WFDOT.db";
             connection.Open();
             var sql1 = testMode ? "SELECT * FROM WB WHERE Ostfriesisch Like 'a%'" : "SELECT * FROM WB";
             string sqlCom = sql1;

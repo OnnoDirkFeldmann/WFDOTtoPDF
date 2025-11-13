@@ -12,7 +12,7 @@ namespace WFDOTtoPDF
             string dictstring;
             dictstring = "";
             SQLiteConnection connection = new SQLiteConnection();
-            connection.ConnectionString = @"Data Source=C:\Users\Neronno\source\repos\WFDOTtoPDF\WFDOTtoPDF\WFDOT.db";
+            connection.ConnectionString = @"Data Source=D:\source\repos\WFDOTtoPDF\WFDOTtoPDF\WFDOT.db";
             connection.Open();
             string sqlCom = "SELECT * FROM WB";
             SQLiteCommand scdCommand = new SQLiteCommand(sqlCom, connection);
